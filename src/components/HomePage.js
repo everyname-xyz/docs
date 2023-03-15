@@ -61,7 +61,7 @@ export default function HomePage() {
         <div className="">
           <img
             width="1400"
-            src="https://cdn.discordapp.com/attachments/1013716252562296833/1085574375790608384/graphic.jpg"
+            src="https://cdn.discordapp.com/attachments/1013716252562296833/1085577222481514556/graphic-removebg-preview.png"
           ></img>
         </div>
       </div>

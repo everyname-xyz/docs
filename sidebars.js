@@ -12,10 +12,6 @@ module.exports = {
           type: "doc",
           id: "overview/whatIs",
         },
-        /*      {
-          type: "doc",
-          id: "overview/howDoesItWork",
-        }, */
       ],
     },
 
@@ -32,35 +28,8 @@ module.exports = {
           type: "doc",
           id: "api/supportedTLDS",
         },
-        /*  {
-          type: "doc",
-          id: "sdk/auth",
-        },
-        {
-          type: "doc",
-          id: "sdk/tokens",
-        },
-        {
-          type: "doc",
-          id: "sdk/swap",
-        },
-        {
-          type: "doc",
-          id: "sdk/collectibles",
-        }, */
       ],
     },
-
-    /*   {
-      type: "category",
-      label: "Examples",
-      items: [
-        {
-          type: "doc",
-          id: "examples/createWallet",
-        },
-      ],
-    }, */
 
     /*   {
       type: "link",

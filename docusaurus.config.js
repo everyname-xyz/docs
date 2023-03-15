@@ -120,7 +120,7 @@ const config = {
           }, */
         ],
       },
-      footer: {
+      /*      footer: {
         style: "light",
         links: [
           {
@@ -136,7 +136,7 @@ const config = {
             to: "https://github.com/everyname-xyz",
           },
         ],
-      },
+      }, */
       prism: {
         theme: darkCodeTheme,
         additionalLanguages: ["solidity"],

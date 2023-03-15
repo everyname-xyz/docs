@@ -60,13 +60,12 @@ export default function HomePage() {
 
         <div className="">
           <img
-            style={{ borderBottom: "1rem solid" }}
             width="1400"
-            src="https://www.everyname.xyz/_next/image?url=%2Fimages%2Ffull-graphic.png&w=3840&q=75"
+            src="https://cdn.discordapp.com/attachments/1013716252562296833/1085574375790608384/graphic.jpg"
           ></img>
         </div>
       </div>
-      <h1 style={{ marginBottom: 50, marginTop: 20 }}>everyname API</h1>
+      {/*       <h1 style={{ marginBottom: 50, marginTop: 20 }}>everyname API</h1> */}
     </div>
   );
 }

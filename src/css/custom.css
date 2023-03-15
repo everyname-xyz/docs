@@ -1,0 +1,144 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@500;800&family=Public+Sans:wght@200;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@800&family=Public+Sans:wght@200;400&display=swap");
+:root {
+  --ifm-color-primary: #ff427b;
+
+  --ifm-code-font-size: 95%;
+  --ifm-font-family-base: "Noto Sans", sans-serif;
+
+  --ifm-color-primary-dark: #058997;
+  --ifm-color-primary-darker: #05818f;
+  --ifm-color-primary-darkest: #046a76;
+
+  --ifm-color-primary-light: #07a7b9;
+  --ifm-color-primary-lighter: #07afc1;
+  --ifm-color-primary-lightest: #08c6da;
+
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  --ifm-footer-background-color: #3b3b3d;
+  --ifm-footer-link-color: #ff427b;
+  --ifm-footer-link-hover-color: #ffffff;
+  --ifm-footer-color: #9e9e9e;
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme="dark"] {
+  --ifm-color-primary: #ff427b;
+  --ifm-color-primary-dark: #058997;
+  --ifm-color-primary-darker: #05818f;
+  --ifm-color-primary-darkest: #046a76;
+  --ifm-color-primary-light: #07a7b9;
+  --ifm-color-primary-lighter: #07afc1;
+  --ifm-color-primary-lightest: #08c6da;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 575.98px) {
+  .d-flex {
+    flex-direction: column;
+  }
+}
+
+.navbarBtn {
+  background-color: #facf1f;
+  border-radius: 22px;
+  margin-left: 10px;
+  color: "white" !important;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.navbarBtn:hover {
+  color: "white" !important;
+  background-color: #facf1f;
+}
+
+/* Styling one class specially in dark mode */
+[data-theme="dark"] .navbarBtn {
+  color: white !important;
+}
+/* Styling one class specially in dark mode */
+[data-theme="dark"] .navbarBtn:hover {
+  color: white !important;
+}
+
+/* Styling one class specially in light mode */
+[data-theme="light"] .navbarBtn {
+  color: white !important;
+}
+/* Styling one class specially in light mode */
+[data-theme="light"] .navbarBtn:hover {
+  color: white !important;
+}
+
+/*Start of github link */
+html[data-theme="dark"] .navbar-github-link:before {
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='white' d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E")
+    no-repeat;
+}
+
+@media (max-width: 1059px) {
+  .navbar-github-link {
+    display: none;
+  }
+}
+
+.navbar-github-link:hover {
+  opacity: 0.5;
+}
+
+.navbar-github-link {
+  opacity: 1;
+}
+
+.navbar-github-link:before {
+  content: "";
+  width: 24px;
+  height: 24px;
+  display: flex;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='rgb(124,140,161)' d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E")
+    no-repeat;
+}
+
+/*Discord navbar logo styles below*/
+
+html[data-theme="dark"] .navbar-github-link:before {
+  background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M16 0C24.8366 0 32 7.16344 32 16C32 24.8366 24.8366 32 16 32C7.16344 32 0 24.8366 0 16C0 7.16344 7.16344 0 16 0ZM18.5703 9.86147C19.8573 10.055 21.0883 10.393 22.2361 10.8518C22.2461 10.8555 22.2546 10.8617 22.2596 10.8704C24.2934 13.4759 25.2979 16.415 24.9223 19.7986C24.9209 19.8129 24.9124 19.826 24.8989 19.8347C23.3585 20.82 21.8663 21.4181 20.3947 21.8146C20.3713 21.8208 20.3457 21.8134 20.3315 21.7959C19.9915 21.3839 19.6827 20.9494 19.4122 20.4932C19.3966 20.4664 19.4108 20.4341 19.4428 20.4235C19.9333 20.2623 20.3997 20.0693 20.8483 19.8409C20.8838 19.8228 20.8859 19.7786 20.8533 19.7575C20.7582 19.6959 20.6638 19.6311 20.5736 19.5664C20.5566 19.5546 20.5338 19.5521 20.5147 19.5602C17.602 20.7322 14.4111 20.7322 11.4637 19.5602C11.4445 19.5527 11.4218 19.5552 11.4055 19.567C11.3153 19.6317 11.2209 19.6959 11.1265 19.7575C11.0938 19.7786 11.0967 19.8228 11.1322 19.8409C11.5808 20.065 12.0472 20.2623 12.537 20.4241C12.569 20.4347 12.5839 20.4664 12.5682 20.4932C12.3035 20.9501 11.9947 21.3845 11.6483 21.7966C11.6333 21.8134 11.6085 21.8208 11.5851 21.8146C10.1206 21.4181 8.62841 20.82 7.08796 19.8347C7.07519 19.826 7.06596 19.8123 7.06454 19.7979C6.75077 16.8713 7.39037 13.9079 9.72519 10.8698C9.73084 10.8617 9.73937 10.8555 9.74931 10.8518C10.8979 10.3924 12.1288 10.0544 13.4151 9.86147C13.4386 9.85836 13.462 9.86769 13.4741 9.88574C13.6331 10.131 13.8148 10.4453 13.9376 10.7024C15.2935 10.5219 16.6707 10.5219 18.0549 10.7024C18.1777 10.4509 18.3531 10.131 18.5114 9.88574C18.5235 9.86707 18.5469 9.85773 18.5703 9.86147ZM11.3898 16.435C11.3898 17.3064 12.121 18.0159 13.0084 18.0159C13.9099 18.0159 14.6269 17.3064 14.6269 16.435C14.6411 15.5698 13.917 14.854 13.0084 14.854C12.1068 14.854 11.3898 15.5635 11.3898 16.435ZM17.3742 16.435C17.3742 17.3064 18.1053 18.0159 18.9927 18.0159C19.9013 18.0159 20.6112 17.3064 20.6112 16.435C20.6254 15.5698 19.9013 14.854 18.9927 14.854C18.0911 14.854 17.3742 15.5635 17.3742 16.435Z' fill='%23A2A5B5'/%3E%3C/svg%3E")
+    no-repeat;
+}
+
+@media (max-width: 1059px) {
+  .navbar-discord-link {
+    display: none;
+  }
+}
+
+.navbar-discord-link:hover {
+  opacity: 0.5;
+}
+
+.navbar-discord-link {
+  opacity: 1;
+}
+
+.navbar-discord-link:before {
+  content: "";
+  width: 24px;
+  height: 24px;
+  display: flex;
+  background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M16 0C24.8366 0 32 7.16344 32 16C32 24.8366 24.8366 32 16 32C7.16344 32 0 24.8366 0 16C0 7.16344 7.16344 0 16 0ZM18.5703 9.86147C19.8573 10.055 21.0883 10.393 22.2361 10.8518C22.2461 10.8555 22.2546 10.8617 22.2596 10.8704C24.2934 13.4759 25.2979 16.415 24.9223 19.7986C24.9209 19.8129 24.9124 19.826 24.8989 19.8347C23.3585 20.82 21.8663 21.4181 20.3947 21.8146C20.3713 21.8208 20.3457 21.8134 20.3315 21.7959C19.9915 21.3839 19.6827 20.9494 19.4122 20.4932C19.3966 20.4664 19.4108 20.4341 19.4428 20.4235C19.9333 20.2623 20.3997 20.0693 20.8483 19.8409C20.8838 19.8228 20.8859 19.7786 20.8533 19.7575C20.7582 19.6959 20.6638 19.6311 20.5736 19.5664C20.5566 19.5546 20.5338 19.5521 20.5147 19.5602C17.602 20.7322 14.4111 20.7322 11.4637 19.5602C11.4445 19.5527 11.4218 19.5552 11.4055 19.567C11.3153 19.6317 11.2209 19.6959 11.1265 19.7575C11.0938 19.7786 11.0967 19.8228 11.1322 19.8409C11.5808 20.065 12.0472 20.2623 12.537 20.4241C12.569 20.4347 12.5839 20.4664 12.5682 20.4932C12.3035 20.9501 11.9947 21.3845 11.6483 21.7966C11.6333 21.8134 11.6085 21.8208 11.5851 21.8146C10.1206 21.4181 8.62841 20.82 7.08796 19.8347C7.07519 19.826 7.06596 19.8123 7.06454 19.7979C6.75077 16.8713 7.39037 13.9079 9.72519 10.8698C9.73084 10.8617 9.73937 10.8555 9.74931 10.8518C10.8979 10.3924 12.1288 10.0544 13.4151 9.86147C13.4386 9.85836 13.462 9.86769 13.4741 9.88574C13.6331 10.131 13.8148 10.4453 13.9376 10.7024C15.2935 10.5219 16.6707 10.5219 18.0549 10.7024C18.1777 10.4509 18.3531 10.131 18.5114 9.88574C18.5235 9.86707 18.5469 9.85773 18.5703 9.86147ZM11.3898 16.435C11.3898 17.3064 12.121 18.0159 13.0084 18.0159C13.9099 18.0159 14.6269 17.3064 14.6269 16.435C14.6411 15.5698 13.917 14.854 13.0084 14.854C12.1068 14.854 11.3898 15.5635 11.3898 16.435ZM17.3742 16.435C17.3742 17.3064 18.1053 18.0159 18.9927 18.0159C19.9013 18.0159 20.6112 17.3064 20.6112 16.435C20.6254 15.5698 19.9013 14.854 18.9927 14.854C18.0911 14.854 17.3742 15.5635 17.3742 16.435Z' fill='%23A2A5B5'/%3E%3C/svg%3E");
+}
+
+/*Start of bugreport link in left sidebar*/
+
+.bugReport {
+  margin-top: 50px;
+}

@@ -1,0 +1,369 @@
+---
+openapi: 3.0.0
+info:
+  title: everyname Wallet API/SDK
+  description: |
+    A wallet API and SDK provides the necessary tools and resources that crypto companies need to develop their own customized wallet application. It allows them to integrate their wallet into their existing product or platform, giving them the opportunity to securely store, send, and receive digital assets. The SDK simplifies the setup process, provides detailed documentation and tutorials, and offers a secure and robust framework for building custom wallets. This way, crypto companies can create innovative products and services that meet the needs of their customers.
+
+     ![Swagger logo](https://media.discordapp.net/attachments/980926180318384148/1049399471533981776/image.png?width=793&height=568)
+
+
+     ---
+
+     ## Supported functions:
+
+       * **Wallet:** auth, create, import, account
+       * **Tokens:** balance, send, receive, swap
+       * **Collectibles:** hold, send, receive, mint
+       * Reading the chain (balances, blocks, transactions)
+       * Wallet address retrieval
+       * Signing messages
+       * Sending transactions
+       * Getting recommended fees
+       * Updating a transaction's fees
+
+       ---
+
+  version: 1.0.0
+servers:
+  - url: https://virtserver.swaggerhub.com/ADRINA0002/WalletAPI/1.0.0
+    description: SwaggerHub API Auto Mocking
+paths:
+  /v1/nft/accountNftCollection/{accountId}:
+    get:
+      tags:
+        - Wallet API Endpoints
+      operationId: accountNftCollections
+      description: This function is designed to retrieve the Non-Fungible Token (NFT) details for a specified account. It will take in the accountId as a parameter and return the NFT details associated with that account. This data can then be used to gain insights into the account’s ownership of NFTs, the composition of their NFT collection, and any associated market trends.
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: accountNftCollections
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NftAsset"
+  /v1/nft/allNftCollections:
+    get:
+      tags:
+        - Wallet API Endpoints
+      operationId: allNftCollections
+      description: This function is designed to get all of the user's Non-Fungible Tokens (NFTs) from the blockchain. It will return an array of objects containing all of the user's tokenized assets. The objects will contain all of the relevant information about each NFT, including the token's name, address, ID, and more. This function provides an easy way to quickly access all of the user's NFTs in one call.
+      responses:
+        "200":
+          description: NftAsset
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NftAsset"
+  /v1/nft/sendNFTTransaction:
+    post:
+      tags:
+        - Wallet API Endpoints
+      operationId: sendNFTTransaction
+      description: This function allows users to easily and securely send a Non-Fungible Token (NFT) to another user. It can be used to transfer ownership of a digital asset such as artwork, music, or a collectible token.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SendNftRequestBody"
+      responses:
+        "200":
+          description: successfully registered device
+  /v1/nft/mintNFT:
+    post:
+      tags:
+        - Wallet API Endpoints
+      operationId: mintNFT
+      description: This function mints an NFT (Non-Fungible Token). It is a powerful tool for creating unique digital assets that can be traded, sold, and collected securely on the blockchain.  By using this function, users can create their own digital assets and mint them as NFTs. The minted NFTs are cryptographically secured and are guaranteed to be unique, making them perfect for collecting, trading, and selling as digital assets.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MintNftRequestBody"
+      responses:
+        "200":
+          description: successfully registered device
+  /v1/token/accountsWithBalance/{walletId}:
+    get:
+      tags:
+        - Wallet API Endpoints
+      operationId: accountsWithBalance
+      description: Returns a list of objects of all accounts that currently are holding any balance.
+      parameters:
+        - name: walletId
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: accountsWithBalance
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Account"
+  /v1/token/totalFiatBalance/{walletId}:
+    get:
+      tags:
+        - Wallet API Endpoints
+      operationId: totalFiatBalance
+      description: Returns the total amount of fiat balance in a wallet.
+      parameters:
+        - name: walletId
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: totalFiatBalance
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TotalFiatAmount"
+  /v1/token/swap:
+    post:
+      tags:
+        - Wallet API Endpoints
+      operationId: swap
+      description: This function facilitates the transfer of tokens between different blockchain networks. It simplifies the process of exchanging tokens, allowing users to quickly and easily switch between different blockchains. The function is secure and reliable, ensuring that token swaps are completed without any issues or delays.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SwapRequestBody"
+      responses:
+        "200":
+          description: Swap between tokens
+  /v1/token/send:
+    post:
+      tags:
+        - Wallet API Endpoints
+      operationId: send
+      description: This function is designed to make sending cryptocurrency incredibly simple and secure. It also provides a range of features such as instant transaction confirmation, low transaction fees, and support for multiple cryptocurrencies.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SendRequestBody"
+      responses:
+        "200":
+          description: Send tokens
+  /v1/fee/getSendTxFees/{accountId}/{asset}/{amount}/{customFee}:
+    get:
+      tags:
+        - Wallet API Endpoints
+      operationId: getSendTxFees
+      description: This function retrieves all transaction fees associated with a send cryptocurrency transaction. It includes the network fee, which is the fee paid to the network for processing the transaction, as well as any additional fees that may be required by the sender or receiver. The function will calculate the total fee for the transaction and return it to the user.
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: asset
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: amount
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: number
+        - name: customFee
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: getSendTxFees
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SendFees"
+components:
+  schemas:
+    NftAsset:
+      type: object
+      properties:
+        length:
+          type: integer
+          format: int64
+        token_id:
+          type: string
+        asset_contract:
+          $ref: "#/components/schemas/NftAsset_asset_contract"
+        collection:
+          $ref: "#/components/schemas/NftAsset_collection"
+        id:
+          type: number
+        description:
+          type: string
+        external_link:
+          type: string
+        image_original_url:
+          type: string
+        image_preview_url:
+          type: string
+        image_thumbnail_url:
+          type: string
+        name:
+          type: string
+        amount:
+          type: string
+        standard:
+          type: string
+    Account:
+      type: object
+      properties:
+        id:
+          type: string
+        walletId:
+          type: string
+        createdAt:
+          type: number
+        enabled:
+          type: boolean
+        derivationPath:
+          type: string
+        chainCode:
+          type: string
+        publicKey:
+          type: string
+        nfts:
+          type: array
+          items:
+            type: object
+    TotalFiatAmount:
+      type: number
+    SendFees:
+      type: number
+    SendNftRequestBody:
+      type: object
+      properties:
+        network:
+          type: string
+          example: mainnet
+        accountId:
+          type: string
+          example: 0729a580-2240-11e6-9eb5-0002a5d5c51b
+        walletId:
+          type: string
+          example: 0729a580-2240-11e6-9eb5-0002a5d5c51b
+        receiver:
+          type: string
+          example: 0x1234567890123456789012345678901234567890
+        values:
+          type: array
+          example:
+            - 1
+            - 5
+            - 7
+          items:
+            type: number
+        fee:
+          type: number
+          example: 0.004
+        feeLabel:
+          type: string
+          example: Average
+    MintNftRequestBody:
+      type: object
+      properties:
+        walletAddress:
+          type: string
+          example: 0x1234567890123456789012345678901234567890
+        tokenUri:
+          type: string
+          example: 0729a580-2240-11e6-9eb5-0002a5d5c51b
+    SwapRequestBody:
+      type: object
+      properties:
+        srcChainId:
+          type: number
+          example: 1
+        srcChainTokenIn:
+          type: string
+          example: 0xdAC17F958D2ee523a2206206994597C13D831ec7
+        srcChainTokenInAmount:
+          type: number
+          example: 5000000
+        dstChainId:
+          type: number
+          example: 137
+        dstChainTokenOut:
+          type: string
+          example: 0x0000000000000000000000000000000000000000
+    SendRequestBody:
+      type: object
+      properties:
+        activeNetwork:
+          type: string
+          example: mainnet
+        asset:
+          type: string
+          example: ETH
+        to:
+          type: string
+          example: 0xdAC17F958D2ee523a2206206994597C13D831ec7
+        value:
+          type: number
+          example: 30000
+        fee:
+          type: number
+          example: 0.004
+        feeLabel:
+          type: string
+          example: Average
+        memo:
+          type: string
+          example: 0x54e3f31b0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee000000000000000000000000c2132d05d31c914a87c6611c10748aeb04b58e8f0000000000000000000000000000000000000000000000001bc16d674ec8000000000000000000000000000000000000000000000000000000000000001cecc100000000000000000000000000000000000000000000000000000000001d11c800000000000000000000000000000000000000000000000000000000000001e000000000000000000000000000000000000000000000000000000000000002200000000000000000
+    Weather:
+      type: object
+      properties:
+        summary:
+          type: string
+        description:
+          type: string
+        icon:
+          type: string
+    NftAsset_asset_contract:
+      type: object
+      properties:
+        address:
+          type: string
+        name:
+          type: string
+        symbol:
+          type: string
+        image_url:
+          type: string
+        external_url:
+          type: string
+    NftAsset_collection:
+      type: object
+      properties:
+        name:
+          type: string

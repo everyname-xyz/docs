@@ -1,0 +1,134 @@
+---
+sidebar_position: 3
+---
+
+# Tokens & Balances
+
+:::info Supported Networks for tokens & balances
+Currently our SDK supports the following networks and more will be added:
+
+- Ethereum: Mainnet, Goerli
+- Polygon: Mainnet, Mumbai
+- Optimism: Mainnet, Goerli
+- Arbitrum: Mainnet, Goerli
+- Astar: Mainnet
+
+:::
+
+---
+
+## List account tokens
+
+List all the tokens in the account, together with their following balances
+
+```typescript
+await listAccountTokens(address: string, chainID: number)
+```
+
+Example:
+
+```typescript
+//import at top level
+import { ERC20Service } from "@everyname/wallet-sdk";
+
+//call function
+const accountTokensList = await ERC20Service.listAccountTokens(
+  address,
+  +chainId
+);
+```
+
+Parameters:
+
+| Name    | Type   | Description                   |
+| ------- | ------ | ----------------------------- |
+| address | string | wallet address                |
+| chainId | number | which chain you want to check |
+
+Return values: A list of objects containing the following info
+
+```typescript
+[{
+  tokenName,
+  tokenSymbol,
+  rawBalance,
+  formattedBalance,
+}...]
+```
+
+## Get Balance
+
+Get the full balance of a specific asset in an address
+
+```typescript
+await getBalance(contractAddress: string, ownerAddress: string, chainID: number)
+```
+
+Parameters:
+
+| Name            | Type   | Description                                                |
+| --------------- | ------ | ---------------------------------------------------------- |
+| contractAddress | string | the address of the token contract to check the balance for |
+| ownerAddress    | string | the address where you want to check balance                |
+| chainId         | number | which chain you want to check                              |
+
+Return values: An object containing the following info
+
+```typescript
+{
+    tokenName,
+    tokenSymbol,
+    rawBalance,
+    formattedBalance,
+}
+```
+
+## Transfer
+
+Transfer token from one wallet to another
+
+```typescript
+await transfer(
+    transferRequest: TransferERC20Request,
+    chainId: number,
+    pk: string,
+  ): Promise<string>
+```
+
+Takes an transferRequest object defined below as
+
+```typescript
+interface TransferERC20Request {
+  contractAddress: string;
+  owner: string;
+  receiver: string;
+  amount: number;
+}
+```
+
+Parameters:
+
+| Name            | Type                 | Description                                              |
+| --------------- | -------------------- | -------------------------------------------------------- |
+| transferRequest | TransferERC20Request | an object containing the transfer request, defined above |
+| chainId         | number               | which chain you want to check                            |
+| pk              | string               | private key of the user that sends the transaction       |
+
+Return values: A string containing the transaction hash (id)
+
+## Receive token(s)
+
+Based on the account address/WalletID (alternatively everyname.xyz) the user is able to transfer tokens/funds into the wallet.
+NFTs (ERC-721, or ERC-1155) will be automatically detected, and added to the wallet, based on account address.
+
+## Buy tokens with FIAT on-ramper
+
+Coming soon...
+
+Another option to fund the wallet is to purchase cryptocurrencies (or paying gas/transaction fees) with credit or debit card, and other options like Apple Pay, Google Pay, or SEPA transfer, based on availability and settings. Currently supported providers are Transak and Onramper.
+
+Your region will determine which on-ramp provider is available. Further the available tokens can be specified.
+
+:::caution
+Please note that the service involves a KYC-process which will need to be completed outside of the wallet SDK.
+:::

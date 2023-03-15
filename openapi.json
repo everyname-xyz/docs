@@ -1,0 +1,522 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "wallet-api",
+    "description": "The Wallet API",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://virtserver.swaggerhub.com/ADRINA0002/WalletAPI/1.0.0",
+      "description": "SwaggerHub API Auto Mocking"
+    }
+  ],
+  "paths": {
+    "/v1/nft/accountNftCollection/{accountId}": {
+      "get": {
+        "tags": [
+          "NFT"
+        ],
+        "operationId": "accountNftCollections",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "accountNftCollections",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NftAsset"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/nft/allNftCollections": {
+      "get": {
+        "tags": [
+          "NFT"
+        ],
+        "operationId": "allNftCollections",
+        "responses": {
+          "200": {
+            "description": "NftAsset",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NftAsset"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/nft/sendNFTTransaction": {
+      "post": {
+        "tags": [
+          "NFT"
+        ],
+        "operationId": "sendNFTTransaction",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendNftRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successfully registered device"
+          }
+        }
+      }
+    },
+    "/v1/nft/mintNFT": {
+      "post": {
+        "tags": [
+          "NFT"
+        ],
+        "operationId": "mintNFT",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MintNftRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successfully registered device"
+          }
+        }
+      }
+    },
+    "/v1/token/accountsWithBalance/{walletId}": {
+      "get": {
+        "tags": [
+          "tokens"
+        ],
+        "operationId": "accountsWithBalance",
+        "parameters": [
+          {
+            "name": "walletId",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "accountsWithBalance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Account"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/token/totalFiatBalance/{walletId}": {
+      "get": {
+        "tags": [
+          "tokens"
+        ],
+        "operationId": "totalFiatBalance",
+        "parameters": [
+          {
+            "name": "walletId",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "totalFiatBalance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TotalFiatAmount"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/token/swap": {
+      "post": {
+        "tags": [
+          "tokens"
+        ],
+        "operationId": "swap",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SwapRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Swap between tokens"
+          }
+        }
+      }
+    },
+    "/v1/token/send": {
+      "post": {
+        "tags": [
+          "tokens"
+        ],
+        "operationId": "send",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Send tokens"
+          }
+        }
+      }
+    },
+    "/v1/fee/getSendTxFees/{accountId}/{asset}/{amount}/{customFee}": {
+      "get": {
+        "tags": [
+          "fees"
+        ],
+        "operationId": "getSendTxFees",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "asset",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "amount",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "customFee",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "getSendTxFees",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SendFees"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "NftAsset": {
+        "type": "object",
+        "properties": {
+          "length": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "token_id": {
+            "type": "string"
+          },
+          "asset_contract": {
+            "$ref": "#/components/schemas/NftAsset_asset_contract"
+          },
+          "collection": {
+            "$ref": "#/components/schemas/NftAsset_collection"
+          },
+          "id": {
+            "type": "number"
+          },
+          "description": {
+            "type": "string"
+          },
+          "external_link": {
+            "type": "string"
+          },
+          "image_original_url": {
+            "type": "string"
+          },
+          "image_preview_url": {
+            "type": "string"
+          },
+          "image_thumbnail_url": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "string"
+          },
+          "standard": {
+            "type": "string"
+          }
+        }
+      },
+      "Account": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "walletId": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "number"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "derivationPath": {
+            "type": "string"
+          },
+          "chainCode": {
+            "type": "string"
+          },
+          "publicKey": {
+            "type": "string"
+          },
+          "nfts": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "TotalFiatAmount": {
+        "type": "number"
+      },
+      "SendFees": {
+        "type": "number"
+      },
+      "SendNftRequestBody": {
+        "type": "object",
+        "properties": {
+          "network": {
+            "type": "string",
+            "example": "mainnet"
+          },
+          "accountId": {
+            "type": "string",
+            "example": "0729a580-2240-11e6-9eb5-0002a5d5c51b"
+          },
+          "walletId": {
+            "type": "string",
+            "example": "0729a580-2240-11e6-9eb5-0002a5d5c51b"
+          },
+          "receiver": {
+            "type": "string",
+            "example": "0x1234567890123456789012345678901234567890"
+          },
+          "values": {
+            "type": "array",
+            "example": [
+              1,
+              5,
+              7
+            ],
+            "items": {
+              "type": "number"
+            }
+          },
+          "fee": {
+            "type": "number",
+            "example": 0.004
+          },
+          "feeLabel": {
+            "type": "string",
+            "example": "Average"
+          }
+        }
+      },
+      "MintNftRequestBody": {
+        "type": "object",
+        "properties": {
+          "walletAddress": {
+            "type": "string",
+            "example": "0x1234567890123456789012345678901234567890"
+          },
+          "tokenUri": {
+            "type": "string",
+            "example": "0729a580-2240-11e6-9eb5-0002a5d5c51b"
+          }
+        }
+      },
+      "SwapRequestBody": {
+        "type": "object",
+        "properties": {
+          "srcChainId": {
+            "type": "number",
+            "example": 1
+          },
+          "srcChainTokenIn": {
+            "type": "string",
+            "example": "0xdAC17F958D2ee523a2206206994597C13D831ec7"
+          },
+          "srcChainTokenInAmount": {
+            "type": "number",
+            "example": 5000000
+          },
+          "dstChainId": {
+            "type": "number",
+            "example": 137
+          },
+          "dstChainTokenOut": {
+            "type": "string",
+            "example": "0x0000000000000000000000000000000000000000"
+          }
+        }
+      },
+      "SendRequestBody": {
+        "type": "object",
+        "properties": {
+          "activeNetwork": {
+            "type": "string",
+            "example": "mainnet"
+          },
+          "asset": {
+            "type": "string",
+            "example": "ETH"
+          },
+          "to": {
+            "type": "string",
+            "example": "0xdAC17F958D2ee523a2206206994597C13D831ec7"
+          },
+          "value": {
+            "type": "number",
+            "example": 30000
+          },
+          "fee": {
+            "type": "number",
+            "example": 0.004
+          },
+          "feeLabel": {
+            "type": "string",
+            "example": "Average"
+          },
+          "memo": {
+            "type": "string",
+            "example": "0x54e3f31b0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee000000000000000000000000c2132d05d31c914a87c6611c10748aeb04b58e8f0000000000000000000000000000000000000000000000001bc16d674ec8000000000000000000000000000000000000000000000000000000000000001cecc100000000000000000000000000000000000000000000000000000000001d11c800000000000000000000000000000000000000000000000000000000000001e000000000000000000000000000000000000000000000000000000000000002200000000000000000"
+          }
+        }
+      },
+      "Weather": {
+        "type": "object",
+        "properties": {
+          "summary": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "icon": {
+            "type": "string"
+          }
+        }
+      },
+      "NftAsset_asset_contract": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "symbol": {
+            "type": "string"
+          },
+          "image_url": {
+            "type": "string"
+          },
+          "external_url": {
+            "type": "string"
+          }
+        }
+      },
+      "NftAsset_collection": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

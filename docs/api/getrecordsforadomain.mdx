@@ -1,0 +1,133 @@
+---
+sidebar_position: 2
+displayed_sidebar: mySidebar
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+# Get Records for a Domain
+
+---
+
+```bash
+https://resolve.everyname.xyz/domains/{domain}
+```
+
+This endpoint returns all the resolution records configured to a domain in a single response.
+
+## Request Method
+
+- GET
+
+## Authentication
+
+- Bearer Token/API Key
+
+## URL Params
+
+| Name   | Type   | Mandatory | Description                                                            |
+| ------ | ------ | --------- | ---------------------------------------------------------------------- |
+| domain | STRING | YES       | A domain name. See all the [supported domain endings](./supportedTLDS) |
+
+## Returns
+
+An object with the following fields:
+
+- `address`: (string) The Resolver smart contract address. This contract is responsible for managing domain records.
+
+## Example
+
+`````md codetabs
+````cURL title='script.curl'
+curl \
+
+    --request GET 'https://resolve.everyname.xyz/domains/tom.eth' \
+
+    --header 'Authorization: Bearer SECRET_API_KEY'
+
+```python title="main.py"
+import requests
+
+domain_search = "tom.eth"
+url = "https://resolve.everyname.xyz/domains/" + domain_search
+
+response = requests.post(url)
+
+data = response.json()
+print(data)
+
+```go label="Go" title="main.go"
+package main
+
+
+import (
+  "fmt"
+  "net/http"
+  "io/ioutil"
+)
+
+
+func main() {
+
+
+  url := "https://resolve.everyname.xyz/domains/:domainSearch"
+  method := "GET"
+
+
+  client := &http.Client {
+  }
+  req, err := http.NewRequest(method, url, nil)
+
+
+  if err != nil {
+    fmt.Println(err)
+    return
+  }
+  req.Header.Add("Accept", "application/json")
+
+
+  res, err := client.Do(req)
+  if err != nil {
+    fmt.Println(err)
+    return
+  }
+  defer res.Body.Close()
+
+
+  body, err := ioutil.ReadAll(res.Body)
+  if err != nil {
+    fmt.Println(err)
+    return
+  }
+  fmt.Println(string(body))
+}
+
+
+    ```
+this is an important comment.
+
+```javascript title="main.js"
+async function run() {
+const domainSearch = 'tom.eth';
+const resp = await fetch(
+`https://resolve.everyname.xyz/domains/${domainSearch}`,
+{method: 'POST'}
+);
+
+const data = await resp.text();
+console.log(data);
+}
+
+run();
+    ```
+````
+`````
+
+Here is an example request result after searching `tom.eth` domain, it returns the resolver address:
+
+```json Response
+{
+  "address": "0xb66dce2da6afaaa98f2013446dbcb0f4b0ab2842"
+}
+```

@@ -1,0 +1,220 @@
+---
+sidebar_position: 2
+---
+
+# Collectibles & NFTs
+
+The everyname NFT functions can manage collections of standardized NFTs (ERC-721, and ERC-1155) on multiple chains evm chains (atm: Ethereum, Polygon, and Arbitrum).
+
+The user gets easy access to NFTs and is able to send, receive, and check stats.
+
+Data sources are delivered by providers (Moralis: Ethereum, Polygon: Covalent 2: Arbitrum). The data provider will deliver the image (otherwise placeholder), NFT name, NFT description, token ID, creator, creator fee, locked, collection description, account address, asset contract, token standard, and the number of copies owned if ERC-1155 is available.
+
+---
+
+## Receive NFTs
+
+The user will automatically receive the NFTs by injection in regard to the account address provided (regardless of account). The detection of the NFTs happens automatically.
+
+## View NFTs from specific address and chain
+
+```typescript
+const nfts = await getNfts(owner: string, chainID: number): Promise<Nft[] | null>
+```
+
+Parameters:
+
+| Name    | Type   | Description                                         |
+| ------- | ------ | --------------------------------------------------- |
+| owner   | string | address of the wallet you want to get all nfts from |
+| chainID | number | which chain you want to get all NFTs from           |
+
+:::info
+In order to use the `getNfts()` function you will need to have called the `sdk.setup()` function and provide valid API keys. [See here](https://docs.everyname.io/sdk/initialization#setup-api-keys)
+:::
+
+React code example:
+
+```typescript
+import { setupSDK } from "../setupSDK";
+import { NftService } from "@everyname/wallet-sdk";
+import React, { useState } from "react";
+
+export default function Collectibles() {
+  setupSDK();
+  const [nfts, setNfts] = useState([]);
+  const fetchNfts = async (address: string, chainId: string) => {
+    const nfts: any = await NftService.getNfts(address, +chainId);
+    console.log(JSON.stringify(nfts));
+    setNfts(nfts);
+  };
+```
+
+<br></br>
+
+:::tip You can check the chainID for all chains
+like Polygon, Arbitrum, Solana, Ethereum etc.. using https://chainlist.org/
+
+The chainID for Ethereum Mainnet is 1
+:::
+
+Return values:
+
+```typescript
+export interface Nft {
+  id: string;
+  contract: {
+    address: string;
+    name?: string;
+    symbol?: string;
+    type?: NftType;
+  };
+  metadata?: {
+    name?: string;
+    description?: string;
+    image?: string;
+  };
+  balance?: number;
+}
+```
+
+## Transfer and Send NFT
+
+```typescript
+ await transferNft(
+    transferRequest: TransferRequest,
+    chainId: number,
+    pk: string,
+  ): Promise<string>
+```
+
+Parameters:
+
+| Name            | Type            | Description                          |
+| --------------- | --------------- | ------------------------------------ |
+| transferRequest | TransferRequest | ...more to come                      |
+| chainID         | number          | which chain you want to send to      |
+| pk              | string          | users privateKey to sign transaction |
+
+```javascript
+export interface TransferRequest {
+  contractAddress: string;
+  owner: string;
+  receiver: string;
+  tokenIDs: string[];
+  amounts?: number[];
+}
+```
+
+Return values:
+
+| Name   | Type   | Description           |
+| ------ | ------ | --------------------- |
+| txHash | string | transaction hash (id) |
+
+Users can send a single NFT (or copy) to another address with enough funds to cover blockchains' speed/fee with out-of-the-box validation and error handling.
+:::tip
+Once the tx is initiated the progress will be tracked (pending vs. completed) and shown to the user with an activity log as well tx details.
+:::
+
+## Create NFT Collection
+
+### Create ERC1155 Collection
+
+To create an ERC1155 NFT collection, you can call the following function:
+
+```typescript
+await createERC1155Collection(
+    { uri, creator }: CreateERC1155CollectionRequest,
+    chainId: number, pk: string
+  ): Promise<string>
+```
+
+Parameters:
+
+| Name    | Type   | Description                                      |
+| ------- | ------ | ------------------------------------------------ |
+| uri     | string | image uri                                        |
+| creator | string | creator address                                  |
+| chainId | number | which chain you want to create the collection in |
+| pk      | string | users private key to sign transaction            |
+
+Returns a string containing the transaction hash (id).
+
+### Create ERC721 Collection
+
+To create an ERC721 NFT collection, you can call the following function:
+
+```typescript
+  await createERC721Collection(
+    { tokenName, tokenSymbol, creator }: CreateERC721CollectionRequest,
+    chainId: number, pk: string
+  ): Promise<string>
+```
+
+Parameters:
+
+| Name        | Type   | Description                                      |
+| ----------- | ------ | ------------------------------------------------ |
+| tokenName   | string | name of token                                    |
+| tokenSymbol | string | token symbol                                     |
+| creator     | string | creator address                                  |
+| chainId     | number | which chain you want to create the collection in |
+| pk          | string | users private key to sign transaction            |
+
+Returns a string containing the transaction hash (id).
+
+## Mint NFT
+
+### Mint ERC721 Token
+
+To mint a ERC721 token (NFT) you can call the following function:
+
+```typescript
+ await mintERC721Token(
+    { contractAddress, owner, recipient, uri }: MintERC721Request,
+    chainId: number, pk: string
+  ): Promise<string>
+```
+
+Parameters:
+
+| Name            | Type   | Description                                                 |
+| --------------- | ------ | ----------------------------------------------------------- |
+| contractAddress | string | the address of the contract you provide                     |
+| owner           | string | the contract owner who has the right to mint                |
+| recipient       | string | wallet address of who will recieve the freshly minted token |
+| uri             | string | image uri                                                   |
+| chainId         | number | which chain you want to create the collection in            |
+| pk              | string | users private key to sign transaction                       |
+
+Returns a string containing the transaction hash (id).
+
+### Mint ERC1155 Token
+
+To mint a ERC1155 token (NFT) you can call the following function:
+
+```typescript
+await mintERC1155Token(
+    { contractAddress, owner, recipient, id, amount }: MintERC1155Request,
+    chainId: number, pk: string): Promise<string>
+```
+
+Parameters:
+
+| Name            | Type   | Description                                                 |
+| --------------- | ------ | ----------------------------------------------------------- |
+| contractAddress | string | the address of the contract you provide                     |
+| owner           | string | the contract owner who has the right to mint                |
+| recipient       | string | wallet address of who will recieve the freshly minted token |
+| id              | string | wallet give your freshly minted NFT an id                   |
+| amount          | number | amount of mints                                             |
+| uri             | string | image uri                                                   |
+| chainId         | number | which chain you want to create the collection in            |
+| pk              | string | users private key to sign transaction                       |
+
+Returns a string containing the transaction hash (id).
+
+## Selling NFTs /soon
+
+(coming soon)

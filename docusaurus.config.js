@@ -1,0 +1,152 @@
+// @ts-check
+// Note: type annotations allow type checking and IDEs autocompletion
+
+const lightCodeTheme = require("prism-react-renderer/themes/github");
+const darkCodeTheme = require("prism-react-renderer/themes/dracula");
+const math = require("remark-math");
+const katex = require("rehype-katex");
+const remarkMath = require("remark-math");
+
+/** @type {import('@docusaurus/types').Config} */
+const config = {
+  title: "everyname",
+  tagline: "Dinosaurs are cool",
+  url: "https://your-docusaurus-test-site.com",
+  baseUrl: "/",
+  onBrokenLinks: "throw",
+  onBrokenMarkdownLinks: "warn",
+  favicon: "img/everyname.svg",
+
+  // GitHub pages deployment config.
+  // If you aren't using GitHub pages, you don't need these.
+  organizationName: "facebook", // Usually your GitHub org/user name.
+  projectName: "docusaurus", // Usually your repo name.
+
+  i18n: {
+    defaultLocale: "en",
+    locales: ["en"],
+  },
+
+  presets: [
+    [
+      "docusaurus-preset-openapi",
+      /** @type {import('docusaurus-preset-openapi').Options} */
+      {
+        api: {
+          path: "openapi.yaml",
+          routeBasePath: "/walletapi",
+        },
+        docs: {
+          sidebarPath: require.resolve("./sidebars.js"),
+          routeBasePath: "/", // Serve the docs at the site's root
+          remarkPlugins: [
+            [require("@docusaurus/remark-plugin-npm2yarn"), { sync: true }],
+            [
+              require("docusaurus-remark-plugin-codetabs"),
+              {
+                // options
+              },
+            ],
+          ],
+
+          rehypePlugins: [katex],
+        },
+        pages: {
+          remarkPlugins: [require("@docusaurus/remark-plugin-npm2yarn")],
+        },
+        blog: false,
+        theme: {
+          customCss: require.resolve("./src/css/custom.css"),
+        },
+      },
+    ],
+  ],
+
+  stylesheets: [
+    {
+      href: "https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css",
+      type: "text/css",
+      integrity:
+        "sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM",
+      crossorigin: "anonymous",
+    },
+    "https://fonts.googleapis.com/css2?family=Public+Sans:wght@200;400&display=swap",
+  ],
+  themeConfig:
+    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
+    ({
+      navbar: {
+        title: "",
+        logo: {
+          alt: "everyname Logo",
+          src: "img/logo_light.svg",
+          srcDark: "img/logo_dark.svg",
+        },
+        items: [
+          {
+            type: "doc",
+            docId: "intro",
+            position: "left",
+            label: "Introduction",
+          },
+
+          /*      {
+            href: "/walletapi",
+            label: "API",
+            position: "left",
+          }, */
+          {
+            to: "https://weightless.so/hgd2zt6r",
+            label: "Get Early Access",
+            position: "left",
+            className: "dark navbarBtn",
+          },
+          {
+            href: "https://everyname.xyz/",
+            label: "everyname.xyz",
+            position: "right",
+          },
+          {
+            position: "right",
+            href: "https://github.com/everyname-xyz",
+            className: "navbar-github-link",
+            "aria-label": "GitHub repository",
+          },
+          /*      {
+            position: "right",
+            href: "https://discord.gg/35yAGaQ3gx",
+            className: "navbar-discord-link",
+            "aria-label": "GitHub repository",
+          }, */
+        ],
+      },
+      footer: {
+        style: "light",
+        links: [
+          {
+            html: `© 2023, everyname. All rights reserved.`,
+          },
+          {
+            label: "everyname",
+            to: "https://everyname.xyz",
+          },
+
+          {
+            label: "GitHub",
+            to: "https://github.com/everyname-xyz",
+          },
+        ],
+      },
+      prism: {
+        theme: darkCodeTheme,
+        additionalLanguages: ["solidity"],
+      },
+      colorMode: {
+        defaultMode: "light",
+        disableSwitch: false,
+        respectPrefersColorScheme: true,
+      },
+    }),
+};
+
+module.exports = config;

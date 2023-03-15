@@ -1,0 +1,43 @@
+---
+sidebar_position: 7
+---
+
+# Swap
+
+:::info Supported Networks for swap
+Currently our SDK supports the following networks for the swap functionality and more will be added:
+
+- Ethereum: Mainnet
+- Polygon: Mainnet
+- Avalanche: Mainnet
+- Arbitrum: Mainnet
+
+:::
+
+We currently support cross-chain evm swaps for: Polygon, Ethereum, Avalanche, Arbitrum
+
+```typescript
+swap(swapRequest: SwapRequest, pkOrSigner: string | JsonRpcSigner)
+```
+
+The swap() function takes the private key string or the JsonRpcSigner (if you are using injected provider) and an object that we call SwapRequest and it has the following object properties:
+
+```typescript
+interface SwapRequest {
+  srcChainId: number;
+  srcChainTokenIn: string;
+  srcChainTokenInAmount: string;
+  dstChainId: number;
+  dstChainTokenOut: string;
+  dstChainTokenOutRecipient: string;
+}
+```
+
+| Name                      | Type   | Description                                                       | Example                                                                                                                                                                                                                           |
+| ------------------------- | ------ | ----------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| srcChainId                | number | specifies the chain id as the chain swap is being initiated       | ethereum mainnet 1                                                                                                                                                                                                                |
+| srcChainTokenIn           | string | specifies the token address                                       | USDT 0xdAC17F958D2ee523a2206206994597C13D831ec7                                                                                                                                                                                   |
+| srcChainTokenInAmount     | string | specifies the desired input amount                                | since USDT token contract uses 6 decimals (the number of digits that come after the decimal place when displaying token values on-screen), the simple math: 50 \* 10^6 leads to 50000000 as the value representing 50 USDT tokens |
+| dstChainId                | string | specified the chainId as the target (destination) chain           | Polygon network chain id (137)                                                                                                                                                                                                    |
+| dstChainTokenOut          | string | specifies the address of the target token                         | since MATIC is not a typical ERC-20 token represented by a smart contract but rather a native coin (a one-of-a-kind token within each EVM chain), we use a null (or zero) address to distinguish it from other tokens.            |
+| dstChainTokenOutRecipient | string | the address target tokens should be transferred to after the swap |

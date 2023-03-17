@@ -1,10 +1,7 @@
 import React from "react";
 import Layout from "@theme/Layout";
 import { useColorMode } from "@docusaurus/theme-common";
-import BrowserOnly from "@docusaurus/BrowserOnly";
 
-import IntroLogoDark from "../../static/img/intro_illustration.svg";
-import IntroLogoLight from "../../static/img/intro_illustration_light.svg";
 
 export default function HomePage() {
   const { colorMode } = useColorMode();

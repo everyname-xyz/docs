@@ -18,17 +18,28 @@ This endpoint returns all the resolution records configured to a domain in a sin
 
 ## Request Method
 
-- GET
+- POST
 
 ## Authentication
 
-- Bearer Token/API Key
+- API key through payload object
 
-## URL Params
+## Payload object
 
-| Name   | Type   | Mandatory | Description                                                            |
+| Name   | Type   | Mandatory | Description                                                            | 
 | ------ | ------ | --------- | ---------------------------------------------------------------------- |
-| domain | STRING | YES       | A domain name. See all the [supported domain endings](./supportedTLDS) |
+| query | STRING | YES       | A domain name + the domain ending. See all the [supported domain endings.](./supportedTLDS) |
+| token | STRING | YES       | Your API token |
+
+Payload object example: 
+
+```json Response
+{
+    "query": "tom.eth",
+    "token": "YOUR_API_TOKEN"
+}
+```
+
 
 ## Returns
 
@@ -36,90 +47,81 @@ An object with the following fields:
 
 - `address`: (string) The Resolver smart contract address. This contract is responsible for managing domain records.
 
-## Example
+## Example 
 
 `````md codetabs
-````cURL title='script.curl'
+```cURL title='script.curl'
 curl \
+--request POST \
+--url 'https://api.everyname.xyz:9010/search' \
+--data-raw '{"query": "tom.eth", "token": "YOUR_API_TOKEN"}'
 
-    --request GET 'https://resolve.everyname.xyz/domains/tom.eth' \
-
-    --header 'Authorization: Bearer SECRET_API_KEY'
 
 ```python title="main.py"
 import requests
 
-domain_search = "tom.eth"
-url = "https://resolve.everyname.xyz/domains/" + domain_search
+url = "https://api.everyname.xyz:9010/search"
+payload = {'query': 'tom.eth', 'token': 'YOUR_API_TOKEN'}
 
-response = requests.post(url)
-
-data = response.json()
-print(data)
+response = requests.get(url, json=payload)
+print(response.text)
 
 ```go label="Go" title="main.go"
 package main
 
-
 import (
-  "fmt"
-  "net/http"
-  "io/ioutil"
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"net/http"
 )
 
-
 func main() {
+	url := "https://api.everyname.xyz:9010/search"
+	payload := map[string]string{"query": "tom.eth", "token": "YOUR_API_TOKEN"}
 
+	payloadBytes, err := json.Marshal(payload)
+	if err != nil {
+		panic(err)
+	}
 
-  url := "https://resolve.everyname.xyz/domains/:domainSearch"
-  method := "GET"
+	req, err := http.NewRequest("POST", url, bytes.NewBuffer(payloadBytes))
+	if err != nil {
+		panic(err)
+	}
 
+	client := &http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		panic(err)
+	}
+	defer resp.Body.Close()
 
-  client := &http.Client {
-  }
-  req, err := http.NewRequest(method, url, nil)
-
-
-  if err != nil {
-    fmt.Println(err)
-    return
-  }
-  req.Header.Add("Accept", "application/json")
-
-
-  res, err := client.Do(req)
-  if err != nil {
-    fmt.Println(err)
-    return
-  }
-  defer res.Body.Close()
-
-
-  body, err := ioutil.ReadAll(res.Body)
-  if err != nil {
-    fmt.Println(err)
-    return
-  }
-  fmt.Println(string(body))
+	fmt.Println("response Status:", resp.Status)
+	fmt.Println("response Headers:", resp.Header)
+	body, _ := ioutil.ReadAll(resp.Body)
+	fmt.Println("response Body:", string(body))
 }
+
 
 
     ```
 this is an important comment.
 
 ```javascript title="main.js"
-async function run() {
-const domainSearch = 'tom.eth';
-const resp = await fetch(
-`https://resolve.everyname.xyz/domains/${domainSearch}`,
-{method: 'POST'}
-);
+const axios = require('axios');
 
-const data = await resp.text();
-console.log(data);
-}
+const url = 'https://api.everyname.xyz:9010/search';
+const payload = { query: 'tom.eth', token: 'YOUR_API_TOKEN' };
 
-run();
+axios.post(url, payload)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+
     ```
 ````
 `````

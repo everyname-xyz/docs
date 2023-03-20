@@ -22,7 +22,11 @@ module.exports = {
       items: [
         {
           type: "doc",
-          id: "api/getrecordsforadomain",
+          id: "api/getresolveraddressfromnamespace",
+        },
+        {
+          type: "doc",
+          id: "api/gethexaddressfromdomain",
         },
         {
           type: "doc",
@@ -49,6 +53,12 @@ module.exports = {
       type: "link",
       label: "Report a Bug", // The link label
       href: "https://github.com/everyname-xyz", // The external URL
+      className: "bugReport",
+    },
+    {
+      type: "link",
+      label: "Add a Namespace", // The link label
+      href: "https://github.com/everyname-xyz/Public", // The external URL
       className: "bugReport",
     },
 

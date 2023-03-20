@@ -1,0 +1,133 @@
+---
+sidebar_position: 2
+displayed_sidebar: mySidebar
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+# Get Name Space from Resolver Address
+---
+
+```bash
+https://api.everyname.xyz:9010/search
+```
+
+This endpoint returns the domain name space for a specified payload query which contains the resolver address in hex format.
+## Request Method
+
+- POST
+
+## Authentication
+
+- API key through payload object
+
+## Payload object
+
+| Name   | Type   | Mandatory | Description                                                            | 
+| ------ | ------ | --------- | ---------------------------------------------------------------------- |
+| query | STRING | YES       | Resolver address in hex format. This address is responsible for managing domain records. |
+| token | STRING | YES       | Your API token |
+
+Payload object example: 
+
+```json Response
+{
+    "query": "0xBF8AfA76BcC2f7Fee2F3b358571F426a698E5edD",
+    "token": "YOUR_API_TOKEN"
+}
+```
+
+
+## Returns
+
+An object with the following fields:
+
+- `domain`: (string) The domain name space connected to the given resolver smart contract address. 
+
+## Example 
+
+`````md codetabs
+```cURL title='script.curl'
+curl \
+--request POST \
+--url 'https://api.everyname.xyz:9010/search' \
+--data-raw '{"query": "0xBF8AfA76BcC2f7Fee2F3b358571F426a698E5edD", "token": "YOUR_API_TOKEN"}'
+
+
+```python title="main.py"
+import requests
+
+url = "https://api.everyname.xyz:9010/search"
+payload = {'query': '0xBF8AfA76BcC2f7Fee2F3b358571F426a698E5edD', 'token': 'YOUR_API_TOKEN'}
+
+response = requests.get(url, json=payload)
+print(response.text)
+
+```go label="Go" title="main.go"
+package main
+
+import (
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"net/http"
+)
+
+func main() {
+	url := "https://api.everyname.xyz:9010/search"
+	payload := map[string]string{"query": "0xBF8AfA76BcC2f7Fee2F3b358571F426a698E5edD", "token": "YOUR_API_TOKEN"}
+
+	payloadBytes, err := json.Marshal(payload)
+	if err != nil {
+		panic(err)
+	}
+
+	req, err := http.NewRequest("POST", url, bytes.NewBuffer(payloadBytes))
+	if err != nil {
+		panic(err)
+	}
+
+	client := &http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		panic(err)
+	}
+	defer resp.Body.Close()
+
+	fmt.Println("response Status:", resp.Status)
+	fmt.Println("response Headers:", resp.Header)
+	body, _ := ioutil.ReadAll(resp.Body)
+	fmt.Println("response Body:", string(body))
+}
+
+
+
+    ```
+this is an important comment.
+
+```javascript title="main.js"
+const axios = require('axios');
+
+const url = 'https://api.everyname.xyz:9010/search';
+const payload = { query: '0xBF8AfA76BcC2f7Fee2F3b358571F426a698E5edD', token: 'YOUR_API_TOKEN' };
+
+axios.post(url, payload)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+
+    ```
+```
+`````
+
+Here is an example request result after searching `0xBF8AfA76BcC2f7Fee2F3b358571F426a698E5edD` address, it returns the resolver name space beloing to the resolver address:
+
+```json Response
+{
+  "domain": "tom.eth"
+}
+```

@@ -61,7 +61,7 @@ curl \
 import requests
 
 url = "https://api.everyname.xyz:9010/search"
-payload = {'query': '0xBF8AfA76BcC2f7Fee2F3b358571F426a698E5edD', 'token': 'YOUR_API_TOKEN', blockchain: 'ethereum'}
+payload = {'query': '0xBF8AfA76BcC2f7Fee2F3b358571F426a698E5edD', 'token': 'YOUR_API_TOKEN', 'blockchain': 'ethereum'}
 
 response = requests.get(url, json=payload)
 print(response.text)

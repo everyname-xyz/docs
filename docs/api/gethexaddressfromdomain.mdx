@@ -28,13 +28,15 @@ This endpoint returns the domain name space for a specified payload query which 
 | ------ | ------ | --------- | ---------------------------------------------------------------------- |
 | query | STRING | YES       | Resolver address in hex format. This address is responsible for managing domain records. |
 | token | STRING | YES       | Your API token |
+| blockchain | STRING | YES  | Which blockchain the hex address belongs to, example Solana, Ethereum etc |
 
 Payload object example: 
 
 ```json Response
 {
     "query": "0xBF8AfA76BcC2f7Fee2F3b358571F426a698E5edD",
-    "token": "YOUR_API_TOKEN"
+    "token": "YOUR_API_TOKEN",
+	"blockchain": "ethereum"
 }
 ```
 
@@ -52,14 +54,14 @@ An object with the following fields:
 curl \
 --request POST \
 --url 'https://api.everyname.xyz:9010/search' \
---data-raw '{"query": "0xBF8AfA76BcC2f7Fee2F3b358571F426a698E5edD", "token": "YOUR_API_TOKEN"}'
+--data-raw '{"query": "0xBF8AfA76BcC2f7Fee2F3b358571F426a698E5edD", "token": "YOUR_API_TOKEN", blockchain: 'ethereum'}'
 
 
 ```python title="main.py"
 import requests
 
 url = "https://api.everyname.xyz:9010/search"
-payload = {'query': '0xBF8AfA76BcC2f7Fee2F3b358571F426a698E5edD', 'token': 'YOUR_API_TOKEN'}
+payload = {'query': '0xBF8AfA76BcC2f7Fee2F3b358571F426a698E5edD', 'token': 'YOUR_API_TOKEN', blockchain: 'ethereum'}
 
 response = requests.get(url, json=payload)
 print(response.text)
@@ -76,7 +78,7 @@ import (
 
 func main() {
 	url := "https://api.everyname.xyz:9010/search"
-	payload := map[string]string{"query": "0xBF8AfA76BcC2f7Fee2F3b358571F426a698E5edD", "token": "YOUR_API_TOKEN"}
+	payload := map[string]string{"query": "0xBF8AfA76BcC2f7Fee2F3b358571F426a698E5edD", "token": "YOUR_API_TOKEN", "blockchain": "ethereum"}
 
 	payloadBytes, err := json.Marshal(payload)
 	if err != nil {
@@ -110,7 +112,7 @@ this is an important comment.
 const axios = require('axios');
 
 const url = 'https://api.everyname.xyz:9010/search';
-const payload = { query: '0xBF8AfA76BcC2f7Fee2F3b358571F426a698E5edD', token: 'YOUR_API_TOKEN' };
+const payload = { query: '0xBF8AfA76BcC2f7Fee2F3b358571F426a698E5edD', token: 'YOUR_API_TOKEN', blockchain: 'ethereum' };
 
 axios.post(url, payload)
   .then((response) => {

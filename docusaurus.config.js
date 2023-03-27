@@ -3,9 +3,7 @@
 
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
-const math = require("remark-math");
 const katex = require("rehype-katex");
-const remarkMath = require("remark-math");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -113,31 +111,10 @@ const config = {
             className: "navbar-github-link",
             "aria-label": "GitHub repository",
           },
-          /*      {
-            position: "right",
-            href: "https://discord.gg/35yAGaQ3gx",
-            className: "navbar-discord-link",
-            "aria-label": "GitHub repository",
-          }, */
+     
         ],
       },
-      /*      footer: {
-        style: "light",
-        links: [
-          {
-            html: `© 2023, everyname. All rights reserved.`,
-          },
-          {
-            label: "everyname",
-            to: "https://everyname.xyz",
-          },
-
-          {
-            label: "GitHub",
-            to: "https://github.com/everyname-xyz",
-          },
-        ],
-      }, */
+ 
       prism: {
         theme: darkCodeTheme,
         additionalLanguages: ["solidity"],

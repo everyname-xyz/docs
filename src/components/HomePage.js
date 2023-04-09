@@ -2,7 +2,6 @@ import React from "react";
 import Layout from "@theme/Layout";
 import { useColorMode } from "@docusaurus/theme-common";
 
-
 export default function HomePage() {
   const { colorMode } = useColorMode();
 
@@ -32,19 +31,18 @@ export default function HomePage() {
               marginTop: 160,
             }}
           >
-            <b>One API >_ Every onchain name</b>
+            <b>Every onchain name</b>
           </p>
           <p className="lead">
-            Everyname enables applications to map human-readable names to crypto
-            wallet addresses from any smart contract registry. <br></br>{" "}
-            <br></br>Search <b>any</b> onchain name .eth .sol .tez .algo .fn
-            .dot .btc .bnb .stark .rsk .cosmos
+            Everyname's advanced API fetches wallet addresses and names from any
+            blockchain name service <br></br> <br></br>Search <b>any</b> onchain
+            name .eth .sol .tez .algo .fn .dot .btc .bnb .stark .rsk .cosmos
           </p>
           <a
             href="/overview/whatIs"
             style={{
-              borderRadius: 22,
-              background: "#facf1f",
+              borderRadius: 12,
+              background: "#e33737",
               width: 150,
               padding: 15,
               color: "white",

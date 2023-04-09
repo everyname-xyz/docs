@@ -6,18 +6,44 @@ sidebar_position: 1
 
 ---
 
-We are constantly adding new TLDS to the API as we are expanding it. Currently the API supports the following name spaces:
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 
-- .eth,
-- .sol
-- .tez
-- .algo
-- .fn
-- .dot
-- .btc
-- .bnb
-- .stark
-- .rsk
-- .cosmos
+# Search Name
+
+---
+
+```bash
+https://api.everyname.xyz:9010/tlds
+```
+
+This endpoint returns an array of the supported TLDS.
+
+## Request Method
+
+- GET
+
+## Returns
+
+Array response:
+
+```json Response
+[
+  "algo",
+  "apt",
+  "avax",
+  "bnb",
+  "btc",
+  "cosmos",
+  "dot",
+  "eth",
+  "fn",
+  "sol",
+  "stark",
+  "tez"
+]
+```
+
+We are constantly adding new TLDS to the API as we are expanding it. Currently the API supports the following name spaces:
 
 We collect research and information regarding new blockchain domain name spaces which can be found [here.](https://github.com/everyname-xyz/Public)

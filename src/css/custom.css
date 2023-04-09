@@ -8,7 +8,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@500;800&family=Public+Sans:wght@200;400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@800&family=Public+Sans:wght@200;400&display=swap");
 :root {
-  --ifm-color-primary: #ff427b;
+  --ifm-color-primary: #e33737;
 
   --ifm-code-font-size: 95%;
   --ifm-font-family-base: "Noto Sans", sans-serif;
@@ -24,14 +24,14 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 
   --ifm-footer-background-color: #3b3b3d;
-  --ifm-footer-link-color: #ff427b;
+  --ifm-footer-link-color: #e33737;
   --ifm-footer-link-hover-color: #ffffff;
   --ifm-footer-color: #9e9e9e;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme="dark"] {
-  --ifm-color-primary: #ff427b;
+  --ifm-color-primary: #e33737;
   --ifm-color-primary-dark: #058997;
   --ifm-color-primary-darker: #05818f;
   --ifm-color-primary-darkest: #046a76;
@@ -48,8 +48,8 @@
 }
 
 .navbarBtn {
-  background-color: #facf1f;
-  border-radius: 22px;
+  background-color: #e33737;
+  border-radius: 12px;
   margin-left: 10px;
   color: "white" !important;
   padding-left: 25px;
@@ -58,7 +58,7 @@
 
 .navbarBtn:hover {
   color: "white" !important;
-  background-color: #facf1f;
+  background-color: #535353;
 }
 
 /* Styling one class specially in dark mode */

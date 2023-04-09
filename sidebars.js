@@ -22,11 +22,11 @@ module.exports = {
       items: [
         {
           type: "doc",
-          id: "api/getresolveraddressfromnamespace",
+          id: "api/name",
         },
         {
           type: "doc",
-          id: "api/gethexaddressfromdomain",
+          id: "api/address",
         },
         {
           type: "doc",
@@ -44,7 +44,7 @@ module.exports = {
     {
       type: "html",
       value:
-        "<hr style='background-color:#ab9fff'/><strong style='color: #ab9fff'>Additional</strong>",
+        "<hr style='background-color:#7a7a7a'/><strong style='color: #7a7a7a'>Additional</strong>",
       className: "sidebar-title",
       defaultStyle: true,
     },

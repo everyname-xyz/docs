@@ -6,15 +6,16 @@ displayed_sidebar: mySidebar
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-# Get Resolver Address from Name Space
+# Search Name
 
 ---
 
 ```bash
-https://api.everyname.xyz:9010/search
+https://api.everyname.xyz:9010/name
 ```
 
-This endpoint returns the resolver address for a specified payload query.
+This endpoint returns the resolver address for a specified payload using the domain name space.
+
 ## Request Method
 
 - POST
@@ -25,41 +26,55 @@ This endpoint returns the resolver address for a specified payload query.
 
 ## Payload object
 
-| Name   | Type   | Mandatory | Description                                                            | 
-| ------ | ------ | --------- | ---------------------------------------------------------------------- |
-| query | STRING | YES       | A domain name + the domain ending. See all the [supported domain endings.](./supportedTLDS) |
-| token | STRING | YES       | Your API token |
+| Name  | Type   | Mandatory | Description                                                                                 |
+| ----- | ------ | --------- | ------------------------------------------------------------------------------------------- |
+| name  | STRING | YES       | A domain name + the domain ending. See all the [supported domain endings.](./supportedTLDS) |
+| token | STRING | YES       | Your API token                                                                              |
 
-Payload object example: 
+Payload object example:
 
 ```json Response
 {
-    "query": "tom.eth",
-    "token": "YOUR_API_TOKEN"
+  "domain": "vitalik.btc",
+  "token": "YOUR_API_TOKEN"
 }
 ```
-
 
 ## Returns
 
 An object with the following fields:
 
+- `success`: (boolean) If the search was a success or not.
 - `address`: (string) The Resolver smart contract address. This contract is responsible for managing domain records.
+- `tldUrl`: (string) TLD URL.
+- `tld`: (string) The tld you searched on.
 
-## Example 
+```json Response
+{
+  "success": true,
+  "address": "SP1Q5FYVXW9DARTMVTV5R15XKCQS2AKPSXBTATFTH",
+  "tldUrl": "https://btc.us/",
+  "tld": "btc"
+}
+```
+
+## Example
 
 `````md codetabs
-```cURL title='script.curl'
+````cURL title='script.curl'
 curl \
 --request POST \
 --url 'https://api.everyname.xyz:9010/search' \
---data-raw '{"query": "tom.eth", "token": "YOUR_API_TOKEN"}'
+--data-raw '{
+  "domain": "vitalik.btc",
+  "token": "YOUR_API_TOKEN"
+}'
 
 
 ```python title="main.py"
 import requests
 
-url = "https://api.everyname.xyz:9010/search"
+url = "https://api.everyname.xyz:9010/name"
 payload = {'query': 'tom.eth', 'token': 'YOUR_API_TOKEN'}
 
 response = requests.get(url, json=payload)
@@ -76,8 +91,8 @@ import (
 )
 
 func main() {
-	url := "https://api.everyname.xyz:9010/search"
-	payload := map[string]string{"query": "tom.eth", "token": "YOUR_API_TOKEN"}
+	url := "https://api.everyname.xyz:9010/name"
+	payload := map[string]string{"name": "vitalik.btc", "token": "YOUR_API_TOKEN"}
 
 	payloadBytes, err := json.Marshal(payload)
 	if err != nil {
@@ -110,8 +125,8 @@ this is an important comment.
 ```javascript title="main.js"
 const axios = require('axios');
 
-const url = 'https://api.everyname.xyz:9010/search';
-const payload = { query: 'tom.eth', token: 'YOUR_API_TOKEN' };
+const url = 'https://api.everyname.xyz:9010/name';
+const payload = { name: 'vitalik.eth', token: 'YOUR_API_TOKEN' };
 
 axios.post(url, payload)
   .then((response) => {
@@ -122,13 +137,5 @@ axios.post(url, payload)
   });
 
     ```
-```
+````
 `````
-
-Here is an example request result after searching `tom.eth` domain, it returns the resolver address:
-
-```json Response
-{
-  "address": "0xb66dce2da6afaaa98f2013446dbcb0f4b0ab2842"
-}
-```

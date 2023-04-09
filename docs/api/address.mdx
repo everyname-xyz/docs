@@ -1,0 +1,142 @@
+---
+sidebar_position: 2
+displayed_sidebar: mySidebar
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+# Search Address
+
+---
+
+```bash
+https://api.everyname.xyz:9010/search
+```
+
+This endpoint returns the domain name space for a specified payload query which contains the resolver address in hex format.
+
+## Request Method
+
+- POST
+
+## Authentication
+
+- API key through payload object
+
+## Payload object
+
+| Name    | Type   | Mandatory | Description                                                                              |
+| ------- | ------ | --------- | ---------------------------------------------------------------------------------------- |
+| name    | STRING | YES       | Resolver address in hex format. This address is responsible for managing domain records. |
+| network | STRING | YES       | Which blockchain the hex address belongs to, example sol, eth etc                        |
+| token   | STRING | YES       | Your API token                                                                           |
+
+Payload object example:
+
+```json Response
+{
+  "address": "0x12C6920A4ACC4Dae6B3992903a48ADcBfFe5dC5E",
+  "network": "eth",
+  "token": "YOUR_API_KEY"
+}
+```
+
+## Returns
+
+An object with the following fields:
+
+- `success`: (boolean) If the search was a success or not.
+- `provider`: (string) Which provider the domain name belongs to
+- `tldUrl`: (string) TLD URL.
+- `name`: (string) The domain name space that belongs to the searched hex address.
+
+Return object example
+
+```json Response
+{
+  "success": true,
+  "provider": "ens",
+  "tldUrl": "https://app.ens.domains/",
+  "name": "veevee.eth"
+}
+```
+
+## Example
+
+`````md codetabs
+````cURL title='script.curl'
+curl \
+--request POST \
+--url 'https://api.everyname.xyz:9010/address' \
+--data-raw '{"address": "0xBF8AfA76BcC2f7Fee2F3b358571F426a698E5edD", "network": 'ethereum', "token": "YOUR_API_TOKEN"}'
+
+
+```python title="main.py"
+import requests
+
+url = "https://api.everyname.xyz:9010/address"
+payload = {'address': '0xBF8AfA76BcC2f7Fee2F3b358571F426a698E5edD','network': 'ethereum', 'token': 'YOUR_API_TOKEN'}
+
+response = requests.get(url, json=payload)
+print(response.text)
+
+```go label="Go" title="main.go"
+package main
+
+import (
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"net/http"
+)
+
+func main() {
+	url := "https://api.everyname.xyz:9010/address"
+	payload := map[string]string{"address": "0xBF8AfA76BcC2f7Fee2F3b358571F426a698E5edD", "network": "ethereum","token": "YOUR_API_TOKEN"}
+
+	payloadBytes, err := json.Marshal(payload)
+	if err != nil {
+		panic(err)
+	}
+
+	req, err := http.NewRequest("POST", url, bytes.NewBuffer(payloadBytes))
+	if err != nil {
+		panic(err)
+	}
+
+	client := &http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		panic(err)
+	}
+	defer resp.Body.Close()
+
+	fmt.Println("response Status:", resp.Status)
+	fmt.Println("response Headers:", resp.Header)
+	body, _ := ioutil.ReadAll(resp.Body)
+	fmt.Println("response Body:", string(body))
+}
+
+
+
+    ```
+this is an important comment.
+
+```javascript title="main.js"
+const axios = require('axios');
+
+const url = 'https://api.everyname.xyz:9010/address';
+const payload = { address: '0xBF8AfA76BcC2f7Fee2F3b358571F426a698E5edD', network: 'ethereum', token: 'YOUR_API_TOKEN'};
+
+axios.post(url, payload)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+
+    ```
+````
+`````

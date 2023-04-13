@@ -33,7 +33,7 @@ const config = {
       {
         api: {
           path: "openapi.yaml",
-          routeBasePath: "/walletapi",
+          routeBasePath: "/",
         },
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
@@ -89,11 +89,11 @@ const config = {
             label: "Introduction",
           },
 
-          /*      {
-            href: "/walletapi",
+          {
+            href: "/api",
             label: "API",
             position: "left",
-          }, */
+          },
           {
             to: "https://weightless.so/hgd2zt6r",
             label: "Get Early Access",
@@ -111,10 +111,9 @@ const config = {
             className: "navbar-github-link",
             "aria-label": "GitHub repository",
           },
-     
         ],
       },
- 
+
       prism: {
         theme: darkCodeTheme,
         additionalLanguages: ["solidity"],

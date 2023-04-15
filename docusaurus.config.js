@@ -33,11 +33,12 @@ const config = {
       {
         api: {
           path: "openapi.yaml",
-          routeBasePath: "/api",
+          routeBasePath: "api",
+          sidebarCollapsed: false,
         },
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
-          routeBasePath: "/", // Serve the docs at the site's root
+          //routeBasePath: "/api", // Serve the docs at the site's root
           remarkPlugins: [
             [require("@docusaurus/remark-plugin-npm2yarn"), { sync: true }],
             [
@@ -78,20 +79,20 @@ const config = {
         title: "",
         logo: {
           alt: "everyname Logo",
-          src: "img/logo_light.svg",
-          srcDark: "img/logo_dark.svg",
+          src: "https://uploads-ssl.webflow.com/64204d41a2bd1e495749eb46/6434550aab4f8743745b859c_everyname_docs_logo.svg",
+          //srcDark: "img/logo_dark.svg",
         },
         items: [
-          {
+          /*     {
             type: "doc",
             docId: "intro",
             position: "left",
             label: "Introduction",
-          },
+          }, */
 
           {
             href: "/api",
-            label: "API",
+            label: "Introduction",
             position: "left",
           },
           {
@@ -115,13 +116,13 @@ const config = {
       },
 
       prism: {
-        theme: darkCodeTheme,
+        theme: lightCodeTheme,
         additionalLanguages: ["solidity"],
       },
       colorMode: {
         defaultMode: "light",
         disableSwitch: false,
-        respectPrefersColorScheme: true,
+        respectPrefersColorScheme: false,
       },
     }),
 };

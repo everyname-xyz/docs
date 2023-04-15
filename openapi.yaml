@@ -28,23 +28,39 @@ info:
 servers:
   - url: https://api.everyname.xyz:9010
 paths:
-  /tlds:
+  /name:
     get:
-      summary: Get supported TLDS
-      operationId: getSupportedTLDS
+      summary: Get Name
+      description: This endpoint returns the resolver address for a specified query using the domain name space.
+      operationId: /name
+      parameters:
+        - name: domain
+          in: query
+          required: true
+          description: Domain name
+          schema:
+            type: string
       responses:
         "200":
-          description: Array of supported TLDS
+          description: Name information
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: string
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  address:
+                    type: string
+                  tldUrl:
+                    type: string
+                  tld:
+                    type: string
   /address:
     get:
-      summary: Get address information
-      operationId: getAddressInfo
+      summary: Get Address
+      description: This endpoint returns the domain name space for a specified query which contains the resolver address in hex format.
+      operationId: /address
       parameters:
         - name: address
           in: query
@@ -74,33 +90,19 @@ paths:
                     type: string
                   name:
                     type: string
-  /name:
+  /tlds:
     get:
-      summary: Get name information
-      operationId: getNameInfo
-      parameters:
-        - name: domain
-          in: query
-          required: true
-          description: Domain name
-          schema:
-            type: string
+      summary: Get supported TLDS
+      operationId: getSupportedTLDS
       responses:
         "200":
-          description: Name information
+          description: Array of supported TLDS
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                  address:
-                    type: string
-                  tldUrl:
-                    type: string
-                  tld:
-                    type: string
+                type: array
+                items:
+                  type: string
 security:
   - API_TOKEN: []
 components:

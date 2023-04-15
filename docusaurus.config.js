@@ -33,7 +33,7 @@ const config = {
       {
         api: {
           path: "openapi.yaml",
-          routeBasePath: "/",
+          routeBasePath: "/api",
         },
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),

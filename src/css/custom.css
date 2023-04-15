@@ -31,7 +31,7 @@
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme="dark"] {
-  --ifm-color-primary: #e33737;
+  --ifm-color-primary: #e43737;
   --ifm-color-primary-dark: #058997;
   --ifm-color-primary-darker: #05818f;
   --ifm-color-primary-darkest: #046a76;
@@ -48,7 +48,7 @@
 }
 
 .navbarBtn {
-  background-color: #e33737;
+  background-color: #e43737;
   border-radius: 12px;
   margin-left: 10px;
   color: "white" !important;
@@ -58,7 +58,7 @@
 
 .navbarBtn:hover {
   color: "white" !important;
-  background-color: #535353;
+  background-color: #323439;
 }
 
 /* Styling one class specially in dark mode */

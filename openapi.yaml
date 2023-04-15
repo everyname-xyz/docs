@@ -1,4 +1,3 @@
----
 openapi: 3.0.0
 info:
   title: Getting Started
@@ -28,16 +27,16 @@ info:
 servers:
   - url: https://api.everyname.xyz:9010
 paths:
-  /name:
+  /forward:
     get:
-      summary: Get Name
-      description: This endpoint returns the resolver address for a specified query using the domain name space.
-      operationId: /name
+      summary: Forward Resolution
+      description: This endpoint returns the resolver address in HEX for a specified query using the domain name space.
+      operationId: /forward
       parameters:
         - name: domain
           in: query
           required: true
-          description: Domain name
+          description: Domain name, example vitalik.eth
           schema:
             type: string
       responses:
@@ -56,22 +55,26 @@ paths:
                     type: string
                   tld:
                     type: string
-  /address:
+      security:
+        - API_TOKEN: []
+      x-security-headers:
+        api-key: $request.headers['api-key']
+  /reverse:
     get:
-      summary: Get Address
+      summary: Reverse Resolution
       description: This endpoint returns the domain name space for a specified query which contains the resolver address in hex format.
-      operationId: /address
+      operationId: /reverse
       parameters:
         - name: address
           in: query
           required: true
-          description: Ethereum address
+          description: Resolver address, example 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045
           schema:
             type: string
         - name: network
           in: query
           required: true
-          description: Blockchain network
+          description: Blockchain network, example 'eth'
           schema:
             type: string
       responses:
@@ -90,10 +93,14 @@ paths:
                     type: string
                   name:
                     type: string
+      security:
+        - API_TOKEN: []
+      x-security-headers:
+        api-key: $request.headers['api-key']
   /tlds:
     get:
       summary: Get supported TLDS
-      operationId: getSupportedTLDS
+      operationId: /tlds
       responses:
         "200":
           description: Array of supported TLDS
@@ -103,11 +110,14 @@ paths:
                 type: array
                 items:
                   type: string
+      security: [] # Remove the API_TOKEN requirement for this endpoint
+
 security:
   - API_TOKEN: []
 components:
   securitySchemes:
     API_TOKEN:
       type: apiKey
-      name: API_TOKEN
+      name: api-key
       in: header
+#0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045

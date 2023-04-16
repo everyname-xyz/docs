@@ -99,7 +99,7 @@ const config = {
           },
           {
             html: `<form class="inputGroup" method="post" action="https://weightless.so/api/lists/hgd2zt6r/subscribe">
-<input type="email" class="inputEmail" value="" required="" name="subscription[email]" placeholder="Type your email">
+<input type="email" class="inputEmail" value="" required="" name="subscription[email]" placeholder="Your email address">
 <button class="dark navbarBtn">
 Subscribe
 </button>
@@ -135,7 +135,7 @@ Subscribe
       },
       colorMode: {
         defaultMode: "light",
-        disableSwitch: false,
+        disableSwitch: true,
         respectPrefersColorScheme: false,
       },
     }),

@@ -62,7 +62,7 @@ paths:
   /reverse:
     get:
       summary: Reverse Resolution
-      description: This endpoint returns the domain name space for a specified query which contains the resolver address in hex format.
+      description: This endpoint returns the domain name space for a specified query which contains the resolver address in HEX format.
       operationId: /reverse
       parameters:
         - name: address

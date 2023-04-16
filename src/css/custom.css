@@ -54,11 +54,27 @@
   color: "white" !important;
   padding-left: 25px;
   padding-right: 25px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-family: "Noto Sans";
+  border: none;
+}
+
+.inputGroup {
+  background-color: #fdeeee;
+  padding: 10px;
+  border-radius: 12;
 }
 
 .navbarBtn:hover {
   color: "white" !important;
   background-color: #323439;
+}
+
+.inputEmail {
+  border: none;
+  font-family: "Noto Sans";
+  border-radius: 12;
 }
 
 /* Styling one class specially in dark mode */

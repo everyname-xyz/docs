@@ -98,11 +98,23 @@ const config = {
             position: "left",
           },
           {
+            html: `<form class="inputGroup" method="post" action="https://weightless.so/api/lists/hgd2zt6r/subscribe">
+<input type="email" class="inputEmail" value="" required="" name="subscription[email]" placeholder="Type your email">
+<button class="dark navbarBtn">
+Subscribe
+</button>
+</form>
+`,
+            position: "left",
+            href: "#",
+          },
+
+          /*      {
             to: "https://weightless.so/hgd2zt6r",
             label: "Get Early Access",
             position: "left",
             className: "dark navbarBtn",
-          },
+          }, */
           {
             href: "https://everyname.xyz/",
             label: "everyname.xyz",

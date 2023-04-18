@@ -49,13 +49,13 @@
 
 .navbarBtn {
   background-color: #e43737;
-  border-radius: 12px;
+  border-radius: 10px;
   margin-left: 10px;
   color: "white" !important;
   padding-left: 25px;
   padding-right: 25px;
-  padding-top: 4px;
-  padding-bottom: 4px;
+  padding-top: 6px;
+  padding-bottom: 6px;
   font-family: "Noto Sans";
   border: none;
   text-align: center;
@@ -76,7 +76,7 @@ input:focus {
   padding-right: 25px;
   padding-top: 4px;
   padding-bottom: 4px;
-  border-radius: 12px;
+  border-radius: 10px;
 }
 
 .navbarBtn:hover {
@@ -87,7 +87,7 @@ input:focus {
 .inputEmail {
   border: none;
   font-family: "Noto Sans";
-  border-radius: 12px;
+  border-radius: 10px;
   padding: 6px;
   background-color: #fdeeee;
   text-align: center;

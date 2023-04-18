@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: Getting Started
+  title: Introduction
   description: |
     Everyname's advanced API fetches wallet addresses and names from any blockchain name service.
 
@@ -9,19 +9,15 @@ info:
 
     Search any onchain name .eth .sol .tez .algo .fn .dot .btc .bnb .stark .rsk .cosmos
 
+    ---
     ## Get started
 
     Everyname API – the ultimate solution for fetching every blockchain domain space. At this time, Everyname API is not yet available to the public. However, we are excited to offer early access to a select group of developers who are eager to integrate our powerful API into their applications.
 
-    By requesting early access to Everyname API, you will have the opportunity to be among the first developers to experience the benefits of a single API for fetching every blockchain domain name space. Our team is committed to providing you with the tools and resources you need to successfully integrate Everyname API into your projects.
+    By requesting early access to Everyname API, you will have the opportunity to be among the first developers to experience the benefits of a single API for fetching every blockchain domain name space. 
 
 
-    [Get Early Acccess](https://weightless.so/hgd2zt6r)
-     ---
-
-     ## Supported TLDS:
-     algo, apt, avax, bnb, btc, cosmos, dot, eth, fn, sol, stark, tez
-     ---
+    [GET API KEY](https://weightless.so/hgd2zt6r)
 
   version: 1.0.0
 servers:

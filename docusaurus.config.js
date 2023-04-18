@@ -98,12 +98,14 @@ const config = {
             position: "left",
           },
           {
-            html: `<form class="inputGroup" method="post" action="https://weightless.so/api/lists/hgd2zt6r/subscribe">
+            /*     html: `<form class="inputGroup" method="post" action="https://weightless.so/api/lists/hgd2zt6r/subscribe">
 <input type="email" class="inputEmail" value="" required="" name="subscription[email]" placeholder="Your email address">
 <button class="dark navbarBtn">
 Subscribe
 </button>
 </form>
+` */ html: `<button class="dark navbarBtn">Get Api Key</button>
+
 `,
             position: "left",
             href: "#",

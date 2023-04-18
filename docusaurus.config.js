@@ -108,15 +108,9 @@ Subscribe
 
 `,
             position: "left",
-            href: "#",
+            href: "https://weightless.so/hgd2zt6r",
           },
 
-          /*      {
-            to: "https://weightless.so/hgd2zt6r",
-            label: "Get Early Access",
-            position: "left",
-            className: "dark navbarBtn",
-          }, */
           {
             href: "https://everyname.xyz/",
             label: "everyname.xyz",

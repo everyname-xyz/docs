@@ -32,7 +32,7 @@ paths:
         - name: domain
           in: query
           required: true
-          description: Domain name, example vitalik.eth
+          description: Domain name, example everyname.eth
           schema:
             type: string
       responses:
@@ -64,7 +64,7 @@ paths:
         - name: address
           in: query
           required: true
-          description: Resolver address, example 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045
+          description: Resolver address, example 0xD475C94562cabC52e38cb3012D976185813284bb
           schema:
             type: string
         - name: network
@@ -89,10 +89,21 @@ paths:
                     type: string
                   name:
                     type: string
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Require api-key to execute...
       security:
         - API_TOKEN: []
       x-security-headers:
         api-key: $request.headers['api-key']
+
   /tlds:
     get:
       summary: Get supported TLDS

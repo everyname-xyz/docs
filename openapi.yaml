@@ -7,7 +7,18 @@ info:
 
     Everyname enables applications to map human-readable names to crypto wallet addresses from any smart contract registry.
 
-    Search any onchain name **.eth .sol .tez .algo .fn .dot .btc .bnb .stark .rsk .cosmos**
+    Search any onchain name **algo,
+      apt,
+      avax,
+      bnb,
+      btc,
+      cosmos,
+      dot,
+      eth,
+      fn,
+      sol,
+      stark,
+      tez,**
 
     ---
     ## Get started

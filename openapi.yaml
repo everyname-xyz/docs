@@ -2,37 +2,38 @@ openapi: 3.0.0
 info:
   title: Introduction
   description: |
-    Everyname's advanced API fetches wallet addresses and names from any blockchain name service.
+    Everyname's advanced API fetches wallet addresses and names from any blockchain name service. 
+    It works by querying multiple onchain name services with a single API call. 
+    There is no need to configure or maintain individual client libraries and RPC endpoints.
+
+    **Note:** as a free service the rate limit is 15 requests per minute per API_KEY.
 
 
-    Everyname enables applications to map human-readable names to crypto wallet addresses from any smart contract registry.
-
-    Search any onchain name **algo,
-      apt,
-      avax,
-      bnb,
-      btc,
-      cosmos,
-      dot,
-      eth,
-      fn,
-      sol,
-      stark,
-      tez,**
-
-    ---
     ## Get started
 
-    Everyname API – the ultimate solution for fetching every blockchain domain space. At this time, Everyname API is not yet available to the public. However, we are excited to offer early access to a select group of developers who are eager to integrate our powerful API into their applications.
+    [Forward Resolution](https://docs.everyname.xyz/api/forward-resolution) maps a name → address, i.e. everyname.eth → 0xD475C94562cabC52e38cb3012D976185813284bb
 
-    By requesting early access to Everyname API, you will have the opportunity to be among the first developers to experience the benefits of a single API for fetching every blockchain domain name space. 
+    [Reverse Resolution](https://docs.everyname.xyz/api/reverse-resolution) maps an address → name, i.e. 0xD475C94562cabC52e38cb3012D976185813284bb → everyname.eth
 
+    Refer [here](https://docs.everyname.xyz/api/get-supported-tlds) for supported networks and TLDs (.eth .avax .tez and so forth)
 
-    [GET API KEY](https://weightless.so/hgd2zt6r)
+    ### To try the API:
+
+    1. Generate a Trial API_KEY using this [tool](https://docs.everyname.xyz/api/get-a-trial-api-key)
+    2. Copy the API_KEY
+    3. Select [Forward](https://docs.everyname.xyz/api/forward-resolution) or [Reverse](https://docs.everyname.xyz/api/reverse-resolution) Resolution
+    4. Click Authorize on the top-right; paste the API_KEY and click Save
+     5. Enter your query into the Console on the far-right of the page
+        1. Forward (query = *domain; i.e. everyname.eth*)
+        2. Reverse (query = *address* and *network; i.e. 0xD475C94562cabC52e38cb3012D976185813284bb* and *eth*) 
+     6. Click Execute or copy and paste the relevant code snippet into your application
+
+    **Note:** the Trial API_KEY is valid for 15 minutes. To request a permanent API_KEY submit your email address [here](https://weightless.so/hgd2zt6r) and we will get back to you soon
 
   version: 1.0.0
 servers:
   - url: https://api.everyname.xyz/
+
 paths:
   /forward:
     get:

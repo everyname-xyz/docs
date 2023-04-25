@@ -32,7 +32,7 @@ info:
 
   version: 1.0.0
 servers:
-  - url: https://api.everyname.xyz:9010
+  - url: https://api.everyname.xyz/
 paths:
   /forward:
     get:
@@ -114,7 +114,6 @@ paths:
         - API_TOKEN: []
       x-security-headers:
         api-key: $request.headers['api-key']
-
   /tlds:
     get:
       summary: Get supported TLDS

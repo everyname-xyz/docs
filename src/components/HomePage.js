@@ -60,7 +60,6 @@ export default function HomePage() {
           ></img>
         </div>
       </div>
-      {/*       <h1 style={{ marginBottom: 50, marginTop: 20 }}>everyname API</h1> */}
     </div>
   );
 }

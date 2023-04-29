@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/openapi.yaml/ui/(.*)",
-      "destination": "/api/$1"
+      "destination": "/api"
     },
     {
       "source": "/(.*)",
@@ -10,7 +10,7 @@
       "has": [
         {
           "type": "host",
-          "value": "docs.everyname.xyz"
+          "value": "*.everyname.xyz"
         }
       ]
     },
@@ -20,7 +20,7 @@
       "has": [
         {
           "type": "host",
-          "value": "docs.everyname.xyz"
+          "value": "*.everyname.xyz"
         }
       ]
     }

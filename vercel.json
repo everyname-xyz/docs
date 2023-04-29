@@ -1,0 +1,14 @@
+{
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/api",
+      "has": [
+        {
+          "type": "host",
+          "value": "docs.everyname.xyz"
+        }
+      ]
+    }
+  ]
+}

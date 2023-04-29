@@ -35,11 +35,11 @@ module.exports = {
       ],
     },
 
-    /*   {
+    {
       type: "link",
-      label: "Wallet API", // The link label
-      href: "/walletapi", // The external URL
-    }, */
+      label: "API Docs", // The link label
+      href: "/api", // The external URL
+    },
 
     {
       type: "html",

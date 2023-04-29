@@ -14,7 +14,7 @@ const config = {
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon:
-    "https://cdn.discordapp.com/attachments/1013716252562296833/1085577222481514556/graphic-removebg-preview.png",
+    "https://uploads-ssl.webflow.com/64204d41a2bd1e495749eb46/64341aaa7225bc9f5b476efb_favicon-32.png",
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -33,11 +33,12 @@ const config = {
       {
         api: {
           path: "openapi.yaml",
-          routeBasePath: "/walletapi",
+          routeBasePath: "api",
+          sidebarCollapsed: false,
         },
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
-          routeBasePath: "/", // Serve the docs at the site's root
+          //routeBasePath: "/api", // Serve the docs at the site's root
           remarkPlugins: [
             [require("@docusaurus/remark-plugin-npm2yarn"), { sync: true }],
             [
@@ -78,28 +79,38 @@ const config = {
         title: "",
         logo: {
           alt: "everyname Logo",
-          src: "img/logo_light.svg",
-          srcDark: "img/logo_dark.svg",
+          src: "https://uploads-ssl.webflow.com/64204d41a2bd1e495749eb46/6434550aab4f8743745b859c_everyname_docs_logo.svg",
+          href: "/api",
+
+          //srcDark: "img/logo_dark.svg",
         },
         items: [
-          {
+          /*     {
             type: "doc",
             docId: "intro",
             position: "left",
             label: "Introduction",
+          }, */
+
+          {
+            href: "/api",
+            label: "Introduction",
+            position: "left",
+          },
+          {
+            /*     html: `<form class="inputGroup" method="post" action="https://weightless.so/api/lists/hgd2zt6r/subscribe">
+<input type="email" class="inputEmail" value="" required="" name="subscription[email]" placeholder="Your email address">
+<button class="dark navbarBtn">
+Subscribe
+</button>
+</form>
+` */ html: `<button class="dark navbarBtn">Get Api Key</button>
+
+`,
+            position: "left",
+            href: "https://weightless.so/hgd2zt6r",
           },
 
-          /*      {
-            href: "/walletapi",
-            label: "API",
-            position: "left",
-          }, */
-          {
-            to: "https://weightless.so/hgd2zt6r",
-            label: "Get Early Access",
-            position: "left",
-            className: "dark navbarBtn",
-          },
           {
             href: "https://everyname.xyz/",
             label: "everyname.xyz",
@@ -111,18 +122,17 @@ const config = {
             className: "navbar-github-link",
             "aria-label": "GitHub repository",
           },
-     
         ],
       },
- 
+
       prism: {
-        theme: darkCodeTheme,
+        theme: lightCodeTheme,
         additionalLanguages: ["solidity"],
       },
       colorMode: {
         defaultMode: "light",
-        disableSwitch: false,
-        respectPrefersColorScheme: true,
+        disableSwitch: true,
+        respectPrefersColorScheme: false,
       },
     }),
 };

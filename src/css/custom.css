@@ -5,13 +5,13 @@
  */
 
 /* You can override the default Infima variables here. */
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@500;800&family=Public+Sans:wght@200;400&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@800&family=Public+Sans:wght@200;400&display=swap");
+
 :root {
+  --ifm-font-family-base: "Mona Sans";
+
   --ifm-color-primary: #e33737;
 
   --ifm-code-font-size: 95%;
-  --ifm-font-family-base: "Noto Sans", sans-serif;
 
   --ifm-color-primary-dark: #058997;
   --ifm-color-primary-darker: #05818f;
@@ -28,10 +28,16 @@
   --ifm-footer-link-hover-color: #ffffff;
   --ifm-footer-color: #9e9e9e;
 }
+@font-face {
+  font-family: "Mona Sans";
+  src: url("/static/Mona-Sans.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme="dark"] {
-  --ifm-color-primary: #e33737;
+  --ifm-color-primary: #e43737;
   --ifm-color-primary-dark: #058997;
   --ifm-color-primary-darker: #05818f;
   --ifm-color-primary-darkest: #046a76;
@@ -48,17 +54,49 @@
 }
 
 .navbarBtn {
-  background-color: #e33737;
-  border-radius: 12px;
+  background-color: #e43737;
+  border-radius: 10px;
   margin-left: 10px;
   color: "white" !important;
   padding-left: 25px;
   padding-right: 25px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  font-family: "Mona Sans";
+  border: none;
+  text-align: center;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+  line-height: 20px;
+  transition: all 0.2s;
+}
+
+input:focus {
+  outline: none;
+}
+
+.inputGroup {
+  background-color: #fdeeee;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-radius: 10px;
 }
 
 .navbarBtn:hover {
   color: "white" !important;
-  background-color: #535353;
+  background-color: #323439;
+}
+
+.inputEmail {
+  border: none;
+  font-family: "Mona Sans";
+  border-radius: 10px;
+  padding: 6px;
+  background-color: #fdeeee;
+  text-align: center;
 }
 
 /* Styling one class specially in dark mode */

@@ -2,11 +2,21 @@
   "rewrites": [
     {
       "source": "/(.*)",
+      "destination": "/example",
+      "has": [
+        {
+          "type": "host",
+          "value": "docs.domain.com"
+        }
+      ]
+    },
+    {
+      "source": "/openapi.yaml/ui/(.*)",
       "destination": "/api",
       "has": [
         {
           "type": "host",
-          "value": "docs.everyname.xyz"
+          "value": "docs.domain.com"
         }
       ]
     }

@@ -2,11 +2,11 @@
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/example",
+      "destination": "/api",
       "has": [
         {
           "type": "host",
-          "value": "docs.domain.com"
+          "value": "docs.everyname.xyz"
         }
       ]
     },
@@ -16,7 +16,7 @@
       "has": [
         {
           "type": "host",
-          "value": "docs.domain.com"
+          "value": "docs.everyname.xyz"
         }
       ]
     }

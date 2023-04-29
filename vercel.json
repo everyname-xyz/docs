@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/openapi.yaml/ui/(.*)",
+      "destination": "/docs/$1"
+    },
+    {
       "source": "/(.*)",
       "destination": "/api",
       "has": [

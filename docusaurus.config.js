@@ -108,7 +108,7 @@ Subscribe
 
 `,
             position: "left",
-            href: "https://weightless.so/hgd2zt6r",
+            href: "https://forms.gle/XikEsdYrqvXrbRhR6",
           },
 
           {

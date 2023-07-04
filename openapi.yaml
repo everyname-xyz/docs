@@ -63,7 +63,7 @@ paths:
             type: string
       responses:
         "200":
-          description: Name information
+          description: Domain Name information
           content:
             application/json:
               schema:
@@ -115,6 +115,58 @@ paths:
                     type: string
                   name:
                     type: string
+      security:
+        - API_TOKEN: []
+      x-security-headers:
+        api-key: $request.headers['api-key']
+  /reverse-all:
+    get:
+      summary: Reverse All EVM
+      description: This endpoint returns the domain name space for each EVM provider given a HEX address.
+      operationId: /reverse-all
+      parameters:
+        - name: address
+          in: query
+          required: true
+          description: Resolver address, example 0xD475C94562cabC52e38cb3012D976185813284bb
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Mapped providers to domain name
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  ens:
+                    type: object
+                    properties:
+                      domain:
+                        type: string
+                  space-id:
+                    type: object
+                    properties:
+                      domain:
+                        type: null
+                  farcaster:
+                    type: object
+                    properties:
+                      domain:
+                        type: string
+                  lens:
+                    type: object
+                    properties:
+                      domain:
+                        type: string
+                  unstoppable-domains:
+                    type: object
+                    properties:
+                      domain:
+                        type: null
+
       security:
         - API_TOKEN: []
       x-security-headers:

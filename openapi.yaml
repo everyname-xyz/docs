@@ -30,7 +30,7 @@ info:
       ii. Reverse (query = address and provider; i.e. 0xD475C94562cabC52e38cb3012D976185813284bb and ens)
     8. Click Execute or copy and paste the relevant code snippet into your application
 
-    **Note:** the Trial API_KEY is valid for 15 minutes. To request a permanent API_KEY submit your email address [here](https://docs.google.com/forms/d/e/1FAIpQLScUGfOKFUl3lhz1wx76ofgtLPyMGkzZ36_7AcsREp4-UQ9mCg/viewform) and we will get back to you soon
+    **Note:** the Trial API_KEY is valid for 15 minutes. To request a permanent API_KEY apply [here](https://forms.gle/XikEsdYrqvXrbRhR6) and we will get back to you within 72 hours.
 
   version: 1.0.0
 servers:

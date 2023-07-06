@@ -6,7 +6,7 @@ info:
     It works by querying multiple onchain name services with a single API call. 
     There is no need to configure or maintain individual client libraries and RPC endpoints.
 
-    **Note:** as a free service the rate limit is 15 requests per minute per API_KEY.
+    **Note:** as a free service the rate limit is 30 requests per minute per API_KEY.
 
 
     ## Get started

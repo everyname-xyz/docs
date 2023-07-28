@@ -166,7 +166,6 @@ paths:
                     properties:
                       domain:
                         type: null
-
       security:
         - API_TOKEN: []
       x-security-headers:
@@ -228,4 +227,70 @@ components:
       type: apiKey
       name: api-key
       in: header
-#0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045
+/forward/social-profile:
+    get:
+      summary: Get Social Profile via Forward Resolution
+      operationId: /forward/social-profile
+      parameters:
+        - name: domain
+          in: query
+          required: true
+          description: Domain name, example everyname.eth
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Social Profile information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  avatar:
+                    type: string
+                  socialHandle:
+                    type: string
+                  providerUrl:
+                    type: string
+                  tld:
+                    type: string
+      security:
+        - API_TOKEN: []
+      x-security-headers:
+        api-key: $request.headers['api-key']
+
+  /get/social-profile:
+    get:
+      summary: Get Social Profile
+      operationId: /get/social-profile
+      parameters:
+        - name: domain
+          in: query
+          required: true
+          description: Domain name, example everyname.eth
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Social Profile information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  avatar:
+                    type: string
+                  socialHandle:
+                    type: string
+                  providerUrl:
+                    type: string
+                  tld:
+                    type: string
+      security:
+        - API_TOKEN: []
+      x-security-headers:
+        api-key: $request.headers['api-key']

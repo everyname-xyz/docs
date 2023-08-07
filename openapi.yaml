@@ -15,25 +15,42 @@ info:
 
     [Reverse Resolution](https://docs.everyname.xyz/api/reverse-resolution) maps an address → name, i.e. 0xD475C94562cabC52e38cb3012D976185813284bb → everyname.eth
 
-    Refer [here](https://docs.everyname.xyz/api/get-supported-tlds) for supported networks and TLDs (.eth .avax .tez and so forth)
+    Refer [here](https://docs.everyname.xyz/api/get-supported-tlds) for supported providers and TLDs (.eth .avax .tez and so forth)
 
     ### To try the API:
+
+
 
     1. Generate a Trial API_KEY using this [tool](https://docs.everyname.xyz/api/get-a-trial-api-key)
     2. Copy the API_KEY
     3. Select [Forward](https://docs.everyname.xyz/api/forward-resolution) or [Reverse](https://docs.everyname.xyz/api/reverse-resolution) Resolution
     4. Click Authorize on the top-right; paste the API_KEY and click Save
-     5. Enter your query into the Console on the far-right of the page
-        1. Forward (query = *domain; i.e. everyname.eth*)
-        2. Reverse (query = *address* and *network; i.e. 0xD475C94562cabC52e38cb3012D976185813284bb* and *eth*) 
-     6. Click Execute or copy and paste the relevant code snippet into your application
+    5. Enter your query into the Console on the far-right of the page
+      i. Forward (query = domain; i.e. everyname.eth)
+      ii. Reverse (query = address and provider; i.e. 0xD475C94562cabC52e38cb3012D976185813284bb and ens)
+    6. Click Execute or copy and paste the relevant code snippet into your application
 
-    **Note:** the Trial API_KEY is valid for 15 minutes. To request a permanent API_KEY submit your email address [here](https://weightless.so/hgd2zt6r) and we will get back to you soon
+    **Note:** the Trial API_KEY is valid for 15 minutes. To request a permanent API_KEY apply [here](https://forms.gle/XikEsdYrqvXrbRhR6) and we will get back to you within 72 hours.
 
   version: 1.0.0
 servers:
   - url: https://api.everyname.xyz/
+tags:
+  - name: Social Profiles
+    description: Social profiles from domain providers
 
+  - name: Supported TLDs & Providers
+    description: See our supported TLDs & Providers
+
+  - name: Forward & Reverse Resolution
+    description: Forward & Reverse Resolution for domains and addresses
+
+x-tagGroups:
+  - name: General Endpoints
+    tags:
+      - Social Profiles
+      - Supported TLDs & Providers
+      - Forward & Reverse Resolution
 paths:
   /try:
     get:
@@ -47,9 +64,12 @@ paths:
               schema:
                 type: string
       security: [] # Remove the API_TOKEN requirement for this endpoint
+  # *********           Forward & Reverse Resolution       ******************
   /forward:
     get:
       summary: Forward Resolution
+      tags:
+        - Forward & Reverse Resolution
       description: This endpoint returns the resolver address in HEX for a specified query using the domain name space.
       operationId: /forward
       parameters:
@@ -61,7 +81,7 @@ paths:
             type: string
       responses:
         "200":
-          description: Name information
+          description: Domain Name information
           content:
             application/json:
               schema:
@@ -82,6 +102,8 @@ paths:
   /reverse:
     get:
       summary: Reverse Resolution
+      tags:
+        - Forward & Reverse Resolution
       description: This endpoint returns the domain name space for a specified query which contains the resolver address in HEX format.
       operationId: /reverse
       parameters:
@@ -91,10 +113,10 @@ paths:
           description: Resolver address, example 0xD475C94562cabC52e38cb3012D976185813284bb
           schema:
             type: string
-        - name: network
+        - name: provider
           in: query
           required: true
-          description: Blockchain network, example 'eth'
+          description: Domain provider, example 'ens'. See full list of providers [here](https://docs.everyname.xyz/api/get-supported-providers).
           schema:
             type: string
       responses:
@@ -117,8 +139,145 @@ paths:
         - API_TOKEN: []
       x-security-headers:
         api-key: $request.headers['api-key']
+  /reverse-all:
+    get:
+      summary: Reverse All EVM
+      tags:
+        - Forward & Reverse Resolution
+      description: This endpoint returns the domain name space for each EVM provider given a HEX address.
+      operationId: /reverse-all
+      parameters:
+        - name: address
+          in: query
+          required: true
+          description: Resolver address, example 0xD475C94562cabC52e38cb3012D976185813284bb
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Mapped providers to domain name
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  ens:
+                    type: object
+                    properties:
+                      domain:
+                        type: string
+                  space-id:
+                    type: object
+                    properties:
+                      domain:
+                        type: null
+                  farcaster:
+                    type: object
+                    properties:
+                      domain:
+                        type: string
+                  lens:
+                    type: object
+                    properties:
+                      domain:
+                        type: string
+                  unstoppable-domains:
+                    type: object
+                    properties:
+                      domain:
+                        type: null
+      security:
+        - API_TOKEN: []
+      x-security-headers:
+        api-key: $request.headers['api-key']
+
+  # *********           Social Profiles       ******************
+  /forward/social-profile:
+    get:
+      tags:
+        - Social Profiles
+      summary: Forward Social Profile
+      description: Resolve a domain name for a social profile; avatar and handle
+      operationId: /forward
+      parameters:
+        - name: domain
+          in: query
+          required: true
+          description: Domain name, example everyname.eth
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Social Profile information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  avatar:
+                    type: string
+                  socialHandle:
+                    type: string
+                  providerUrl:
+                    type: string
+                  tld:
+                    type: string
+      security:
+        - API_TOKEN: []
+      x-security-headers:
+        api-key: $request.headers['api-key']
+  /reverse/social-profile:
+    get:
+      tags:
+        - Social Profiles
+      summary: Reverse Social Profile
+      description: Resolve an 0x address for a social profile; avatar and handle.
+      operationId: /reverse/social-profile
+      parameters:
+        - name: address
+          in: query
+          required: true
+          description: Resolver address, example 0xD475C94562cabC52e38cb3012D976185813284bb
+          schema:
+            type: string
+        - name: provider
+          in: query
+          required: true
+          description: Domain provider, example 'ens'. See full list of providers [here](https://docs.everyname.xyz/api/get-supported-providers).
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Social Profile information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  avatar:
+                    type: string
+                  socialHandle:
+                    type: string
+                  providerUrl:
+                    type: string
+                  tld:
+                    type: string
+      security:
+        - API_TOKEN: []
+      x-security-headers:
+        api-key: $request.headers['api-key']
+
+  #*******      Supported TLDs & Providers      ***********
   /tlds:
     get:
+      tags:
+        - Supported TLDs & Providers
       summary: Get supported TLDS
       operationId: /tlds
       responses:
@@ -131,6 +290,45 @@ paths:
                 items:
                   type: string
       security: [] # Remove the API_TOKEN requirement for this endpoint
+  /providers:
+    get:
+      tags:
+        - Supported TLDs & Providers
+      summary: Get supported providers
+      operationId: /providers
+      responses:
+        "200":
+          description: Returns a string[] array of domain providers we support
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+      security: [] # Remove the API_TOKEN requirement for this endpoint
+
+  /provider-to-tlds:
+    get:
+      tags:
+        - Supported TLDs & Providers
+      summary: "Get provider to TLDS"
+      operationId: /provider-to-tlds
+      responses:
+        "200":
+          description: "Returns an object map: provider -> tlds: array"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  provider:
+                    type: array
+                    items:
+                      type: string
+                example:
+                  provider: ["tld1", "tld2"]
+      security: [] # Remove the API_TOKEN requirement for this endpoint
+
 security:
   - API_TOKEN: []
 components:
@@ -139,4 +337,3 @@ components:
       type: apiKey
       name: api-key
       in: header
-#0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045

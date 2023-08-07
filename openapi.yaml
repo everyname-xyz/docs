@@ -199,7 +199,7 @@ paths:
       tags:
         - Social Profiles
       summary: Forward Social Profile
-      description: Resolve a domain name for a social profile; avatar and handle
+      description: Resolve a domain name for a social profile; avatar and handle (ENS, Lens, Farcaster, and Unstoppable Domains).
       operationId: /forward
       parameters:
         - name: domain
@@ -235,7 +235,7 @@ paths:
       tags:
         - Social Profiles
       summary: Reverse Social Profile
-      description: Resolve an 0x address for a social profile; avatar and handle.
+      description: Resolve an 0x address for a social profile; avatar and handle (ENS, Lens, Farcaster, and Unstoppable Domains).
       operationId: /reverse/social-profile
       parameters:
         - name: address

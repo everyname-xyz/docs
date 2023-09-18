@@ -13,6 +13,8 @@ info:
 
     [Reverse Resolution](https://docs.everyname.xyz/api/reverse-resolution) maps an address → name, i.e. 0xD475C94562cabC52e38cb3012D976185813284bb → everyname.eth
 
+    [Forward Multicoin Resolution](https://docs.everyname.xyz/api/forward-multicoin) maps a name → to an array of address records, i.e. everyname.eth → [array of address records]
+
     Refer [here](https://docs.everyname.xyz/api/get-supported-tlds) for supported providers and TLDs (.eth .avax .tez and so forth)
 
     ### To try the API:
@@ -103,19 +105,13 @@ paths:
       summary: Forward Multicoin
       tags:
         - Forward & Reverse Resolution
-      description: Retrieves a list of hex address records for multiple coins.
+      description: Retrieves a list of hex address records for multiple coins. Currently supports the providers and tlds for; (ens, superlink, unstoppable-domains)
       operationId: /multicoin
       parameters:
         - name: domain
           in: query
           required: true
           description: The domain name for which to retrieve address records.
-          schema:
-            type: string
-        - name: provider
-          in: query
-          required: true
-          description: The provider name (currently supporting; "superlink", "unstoppable-domains", "ens")
           schema:
             type: string
       responses:

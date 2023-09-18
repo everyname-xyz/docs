@@ -107,7 +107,7 @@ paths:
       summary: Forward Multicoin
       tags:
         - Forward & Reverse Resolution
-      description: Retrieves a list of hex address records for multiple coins.
+      description: Retrieves a list of hex address records for multiple coins. Currently supports the providers and tlds for; (ens, superlink, unstoppable-domains)
       operationId: /multicoin
       parameters:
         - name: domain
